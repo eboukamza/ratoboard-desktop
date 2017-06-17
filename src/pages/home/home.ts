@@ -18,8 +18,9 @@ export class HomePage {
   first;
   currentIndex;
   currentIndex2;
+  duration = 1500;
 
-  username;
+  text;
 
   updateIndex(currentVowelIndex) {
     if (this.first) {
@@ -60,7 +61,7 @@ export class HomePage {
     let subject = new Subject<Vowel>();
 
     let currentVowelIndex;
-    let interval = newCicle();
+    let interval = newCycle();
 
     async function cycle() {
 
@@ -77,7 +78,7 @@ export class HomePage {
         return '';
       }
 
-      interval = newCicle();
+      interval = newCycle();
 
       async function selectVowel2 () {
         theMotherOfTheRato.first = false;
@@ -127,13 +128,13 @@ export class HomePage {
         default:
           addChar(char);
       }
-      theMotherOfTheRato.username = getBuffer();
+      theMotherOfTheRato.text = getBuffer();
       theMotherOfTheRato.first = true;
       theMotherOfTheRato.currentIndex = -1;
       theMotherOfTheRato.currentIndex2 = -1;
     }
 
-    function newCicle() {
+    function newCycle() {
       currentVowelIndex = -1;
 
       return setInterval(() => {
@@ -149,7 +150,7 @@ export class HomePage {
         }
 
         theMotherOfTheRato.updateIndex(currentVowelIndex);
-      }, 1500);
+      }, theMotherOfTheRato.duration);
     }
 
 
@@ -165,7 +166,7 @@ export class HomePage {
     while(true){
       digest(await cycle());
 
-      interval = newCicle();
+      interval = newCycle();
     }
 
   }
