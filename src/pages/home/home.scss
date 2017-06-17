@@ -1,0 +1,14 @@
+page-home {
+  .active {
+    //background: #7ED321;
+    font-weight: bold;
+    color:#851714;
+    font-size: 14px;
+    background: none !important;
+    opacity: 1 !important;
+  }
+  .row-selected {
+    background: #d6d6d6;
+    opacity: 0.5;
+  }
+}
