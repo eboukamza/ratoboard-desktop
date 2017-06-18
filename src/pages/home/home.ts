@@ -111,16 +111,21 @@ export class HomePage {
 
     function speach(txt) {
       console.info(txt);
-      let msg = new SpeechSynthesisUtterance();
-
-      let voices = window.speechSynthesis.getVoices();
-      let spanishVoice = voices.map(voice=> voice.lang).indexOf('es-ES');
-      msg.voice = voices[spanishVoice];
-      msg.text = txt;
-      msg.lang = 'es-ES';
-
-      speechSynthesis.speak(msg);
       theMotherOfTheRato.registry.push({msg: txt, date: new Date()});
+
+      try {
+        let msg = new SpeechSynthesisUtterance();
+
+        let voices = window.speechSynthesis.getVoices();
+        let spanishVoice = voices.map(voice=> voice.lang).indexOf('es-ES');
+        msg.voice = voices[spanishVoice];
+        msg.text = txt;
+        msg.lang = 'es-ES';
+
+        speechSynthesis.speak(msg);
+      } catch (e) {
+        console.error(e);
+      }
     }
 
     function addChar(char) {
