@@ -1,6 +1,6 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "RatoWeb",
+  "short_name": "Ratoweb",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{

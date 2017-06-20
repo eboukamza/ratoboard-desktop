@@ -1,19 +1,27 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {AfterViewInit, Component} from '@angular/core';
 import {Subject} from 'rxjs';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements AfterViewInit {
 
-  constructor(public navCtrl: NavController) {
+  constructor() {
   }
 
-  ionViewDidEnter(){
+  ngAfterViewInit() {
     this.ratoweb();
   }
+
+  public ABC = [
+    ['a', 'e', 'i', 'o', 'u'],
+    ['b', 'c', 'd', 'f', 'g'],
+    ['h', 'j', 'k', 'l', 'm'],
+    ['n', 'ñ', 'p', 'q', 'r'],
+    ['s', 't', 'v', 'w', 'x'],
+    ['y', 'z', ' ', '<-', '<-|']
+  ];
 
   first;
   currentIndex;
@@ -34,17 +42,9 @@ export class HomePage {
 
   async ratoweb() {
     let theMotherOfTheRato = this;
-    const abc = [
-      ['a', 'e', 'i', 'o', 'u'],
-      ['b', 'c', 'd', 'f', 'g'],
-      ['h', 'j', 'k', 'l', 'm'],
-      ['n', 'ñ', 'p', 'q', 'r'],
-      ['s', 't', 'v', 'w', 'x'],
-      ['y', 'z', ' ', '<-', '<-|']
-    ];
 
-    const vowels: [Vowel] = abc[0] as [Vowel];
-    const consonants = abc.slice(1);
+    const vowels: [Vowel] = this.ABC[0] as [Vowel];
+    const consonants = this.ABC.slice(1);
     const vowelsIndex = {'a': 0, 'e': 1, 'i': 2, 'o': 3, 'u': 4};
 
     type Vowel = 'a' | 'e' | 'i' | 'o' | 'u';
@@ -67,7 +67,7 @@ export class HomePage {
 
     async function cycle() {
 
-      async function selectVowel1 () {
+      async function selectVowel1() {
         theMotherOfTheRato.first = true;
         return streamVowels.take(1).toPromise();
       }
@@ -82,7 +82,7 @@ export class HomePage {
 
       interval = newCycle();
 
-      async function selectVowel2 () {
+      async function selectVowel2() {
         theMotherOfTheRato.first = false;
         return streamVowels.take(1).toPromise();
       }
@@ -111,7 +111,7 @@ export class HomePage {
 
     function speach(txt) {
       console.info(txt);
-      theMotherOfTheRato.registry.push({msg: txt, date: new Date()});
+      theMotherOfTheRato.registry.unshift({msg: txt, date: new Date()});
 
       try {
         let msg = new SpeechSynthesisUtterance();
@@ -180,7 +180,7 @@ export class HomePage {
     //test
     let buffer = '';
 
-    while(true){
+    while (true) {
       digest(await cycle());
 
       interval = newCycle();

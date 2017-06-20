@@ -1,8 +1,7 @@
 {
-  "name": "ionic-hello-world",
+  "name": "rato-web",
   "version": "0.0.0",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "Elias Zain",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -42,13 +41,5 @@
     "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard"
   ],
-  "cordovaPlatforms": [
-    "ios",
-    {
-      "platform": "ios",
-      "version": "",
-      "locator": "ios"
-    }
-  ],
-  "description": "ratoweb: An Ionic project"
+  "description": "ratoweb project"
 }
