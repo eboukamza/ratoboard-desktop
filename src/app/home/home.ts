@@ -1,5 +1,6 @@
 import {AfterViewInit, Component} from '@angular/core';
 import {Subject} from 'rxjs';
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'page-home',
@@ -7,11 +8,43 @@ import {Subject} from 'rxjs';
 })
 export class HomePage implements AfterViewInit {
 
-  constructor() {
+  constructor(private storage: Storage) {
   }
 
   ngAfterViewInit() {
     this.ratoweb();
+
+    this.getDuration();
+    this.getRegistry();
+  }
+
+  getDuration() {
+    // use the duration stored if exists
+    this.storage.get('duration')
+      .then(duration => {
+        if (duration) {
+          this.duration = duration;
+        }
+      })
+  }
+
+  clearRegistry() {
+    this.registry = [];
+    this.storage.remove('registry');
+  }
+
+  getRegistry() {
+    this.storage.get('registry')
+      .then(registry => {
+        if (registry) {
+          this.registry = registry;
+        }
+      })
+  }
+
+  saveDuration(duration) {
+    console.debug('duration change');
+    this.storage.set('duration', duration);
   }
 
   public ABC = [
@@ -112,12 +145,13 @@ export class HomePage implements AfterViewInit {
     function speach(txt) {
       console.info(txt);
       theMotherOfTheRato.registry.unshift({msg: txt, date: new Date()});
+      theMotherOfTheRato.storage.set('registry', theMotherOfTheRato.registry);
 
       try {
         let msg = new SpeechSynthesisUtterance();
 
         let voices = window.speechSynthesis.getVoices();
-        let spanishVoice = voices.map(voice=> voice.lang).indexOf('es-ES');
+        let spanishVoice = voices.map(voice => voice.lang).indexOf('es-ES');
         msg.voice = voices[spanishVoice];
         msg.text = txt;
         msg.lang = 'es-ES';

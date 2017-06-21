@@ -47,12 +47,19 @@
     </ion-row>
 
     <ion-item>
-      <ion-range min="500" max="5000" step="100" [(ngModel)]="duration"></ion-range>
+      <ion-range min="500" max="5000" step="100" [(ngModel)]="duration" (ngModelChange)="saveDuration(duration)"></ion-range>
     </ion-item>
 
   </ion-grid>
 
-  <ion-icon name="md-play"></ion-icon><ion-input type="text" [ngModel]="text" id="blabla"></ion-input>
+  <ion-item>
+    <ion-label><ion-icon name="arrow-forward"></ion-icon></ion-label>
+    <ion-input type="text" [ngModel]="text"></ion-input>
+  </ion-item>
+
+  <button ion-button icon-only (click)="clearRegistry()" clear>
+    <ion-icon name="ios-trash-outline"></ion-icon>
+  </button>
 
   <ion-list>
     <ion-item *ngFor="let record of registry">[{{record.date | date:'HH:mm:ss'  }}] {{record.msg}}</ion-item>

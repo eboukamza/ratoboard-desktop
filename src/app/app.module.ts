@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 
 import {HomePage} from './home/home';
+import {IonicStorageModule} from '@ionic/storage';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import {HomePage} from './home/home';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(HomePage)
+    IonicModule.forRoot(HomePage),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
