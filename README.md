@@ -9,6 +9,7 @@ Uses
 - [x] async/await
 - [x] RxJs
 - [x] LocalStorage
-- [ ] Service Worker
+- [x] Service Worker
+- [x] Installable Web App in Chrome for Android
 - [ ] Unit test in Angular (with TestBed)
 - [ ] Component-based architecture (?)
