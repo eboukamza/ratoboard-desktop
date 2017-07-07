@@ -4,11 +4,13 @@ import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 
 import {HomePage} from './home/home';
 import {IonicStorageModule} from '@ionic/storage';
+import {RatoBoard} from "./home/ratoboard/ratoboard.component";
 
 
 @NgModule({
   declarations: [
-    HomePage
+    HomePage,
+    RatoBoard
   ],
   imports: [
     BrowserModule,
@@ -17,7 +19,8 @@ import {IonicStorageModule} from '@ionic/storage';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    HomePage
+    HomePage,
+    RatoBoard
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler}
