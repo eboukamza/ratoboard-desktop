@@ -1,34 +1,34 @@
   <ion-row>
     <ion-col></ion-col>
-    <ion-col *ngFor="let vowel of ABC[0]; index as index" [ngClass]="{'active': currentIndex === index}">{{vowel}}</ion-col>
+    <ion-col *ngFor="let vowel of ABC[0]; index as index" [ngClass]="{'row-selected': currentIndex === index, 'active': currentIndex === index}">{{vowel}}</ion-col>
   </ion-row>
 
-  <ion-row [ngClass]="{'row-selected': currentIndex2 === 0}">
-    <ion-col>a</ion-col>
-    <ion-col *ngFor="let cons of ABC[1]; index as index" [ngClass]="{'row-selected': currentIndex === index, 'active': currentIndex === index && currentIndex2 === 0}">{{cons}}</ion-col>
+  <ion-row>
+    <ion-col [ngClass]="{'row-selected': currentIndex2 === 0}">a</ion-col>
+    <ion-col *ngFor="let cons of ABC[1]; index as index" [ngClass]="{'row-selected': currentIndex === index || currentIndex2 === 0, 'active': currentIndex === index && currentIndex2 === 0}">{{cons}}</ion-col>
   </ion-row>
 
-  <ion-row [ngClass]="{'row-selected': currentIndex2 === 1}">
-    <ion-col>e</ion-col>
-    <ion-col *ngFor="let cons of ABC[2]; index as index" [ngClass]="{'row-selected': currentIndex === index, 'active': currentIndex === index && currentIndex2 === 1}">{{cons}}</ion-col>
+  <ion-row>
+    <ion-col [ngClass]="{'row-selected': currentIndex2 === 1}">e</ion-col>
+    <ion-col *ngFor="let cons of ABC[2]; index as index" [ngClass]="{'row-selected': currentIndex === index || currentIndex2 === 1, 'active': currentIndex === index && currentIndex2 === 1}">{{cons}}</ion-col>
   </ion-row>
 
-  <ion-row [ngClass]="{'row-selected': currentIndex2 === 2}">
-    <ion-col>i</ion-col>
-    <ion-col *ngFor="let cons of ABC[3]; index as index" [ngClass]="{'row-selected': currentIndex === index, 'active': currentIndex === index && currentIndex2 === 2}">{{cons}}</ion-col>
+  <ion-row>
+    <ion-col [ngClass]="{'row-selected': currentIndex2 === 2}">i</ion-col>
+    <ion-col *ngFor="let cons of ABC[3]; index as index" [ngClass]="{'row-selected': currentIndex === index || currentIndex2 === 2, 'active': currentIndex === index && currentIndex2 === 2}">{{cons}}</ion-col>
   </ion-row>
 
-  <ion-row [ngClass]="{'row-selected': currentIndex2 === 3}">
-    <ion-col>o</ion-col>
-    <ion-col *ngFor="let cons of ABC[4]; index as index" [ngClass]="{'row-selected': currentIndex === index, 'active': currentIndex === index && currentIndex2 === 3}">{{cons}}</ion-col>
+  <ion-row>
+    <ion-col [ngClass]="{'row-selected': currentIndex2 === 3}">o</ion-col>
+    <ion-col *ngFor="let cons of ABC[4]; index as index" [ngClass]="{'row-selected': currentIndex === index || currentIndex2 === 3, 'active': currentIndex === index && currentIndex2 === 3}">{{cons}}</ion-col>
   </ion-row>
 
-  <ion-row [ngClass]="{'row-selected': currentIndex2 === 4}">
-    <ion-col>u</ion-col>
-    <ion-col [ngClass]="{'row-selected': currentIndex === 0, 'active': currentIndex === 0 && currentIndex2 === 4}">y</ion-col>
-    <ion-col [ngClass]="{'row-selected': currentIndex === 1, 'active': currentIndex === 1 && currentIndex2 === 4}">z</ion-col>
-    <ion-col [ngClass]="{'row-selected': currentIndex === 2, 'active': currentIndex === 2 && currentIndex2 === 4}">_</ion-col>
-    <ion-col [ngClass]="{'row-selected': currentIndex === 3, 'active': currentIndex === 3 && currentIndex2 === 4}">
+  <ion-row>
+    <ion-col [ngClass]="{'row-selected': currentIndex2 === 4}">u</ion-col>
+    <ion-col [ngClass]="{'row-selected': currentIndex === 0 || currentIndex2 === 4, 'active': currentIndex === 0 && currentIndex2 === 4}">y</ion-col>
+    <ion-col [ngClass]="{'row-selected': currentIndex === 1 || currentIndex2 === 4, 'active': currentIndex === 1 && currentIndex2 === 4}">z</ion-col>
+    <ion-col [ngClass]="{'row-selected': currentIndex === 2 || currentIndex2 === 4, 'active': currentIndex === 2 && currentIndex2 === 4}">_</ion-col>
+    <ion-col [ngClass]="{'row-selected': currentIndex === 3 || currentIndex2 === 4, 'active': currentIndex === 3 && currentIndex2 === 4}">
       <ion-icon name="md-backspace"></ion-icon>
     </ion-col>
     <ion-col [ngClass]="{'row-selected': currentIndex === 4, 'active': currentIndex === 4 && currentIndex2 === 4}">
