@@ -33,6 +33,6 @@ describe('HomePage', () => {
   it('should have a title', () => {
     fixture.detectChanges();
     const title = de.nativeElement;
-    expect(title.innerText).toMatch('Ratoweb!');
+    expect(title.innerText).toMatch('RatoBoard!');
   });
 });

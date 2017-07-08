@@ -1,6 +1,6 @@
 {
-  "name": "RatoWeb",
-  "short_name": "Ratoweb",
+  "name": "RatoBoard",
+  "short_name": "RatoBoard",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
