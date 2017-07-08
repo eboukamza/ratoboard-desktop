@@ -1,8 +1,14 @@
 ratoboard {
+  font-size: 16px;
+
+  ion-col {
+    text-align: center;
+    //height: 35px;
+    //width: 35px;
+  }
   .active {
-    //background: #7ED321;
     font-weight: bold;
-    color:#851714;
+    color: color($colors, danger);
     opacity: 1 !important;
   }
   .row-selected {
