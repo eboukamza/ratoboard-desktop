@@ -1,4 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {Storage} from '@ionic/storage';
 
 const DEFAULT_DURATION_MS = 1500;
@@ -8,6 +8,12 @@ const DEFAULT_DURATION_MS = 1500;
   templateUrl: 'home.html'
 })
 export class HomePage implements AfterViewInit {
+
+  @ViewChild('textInput') textInput;
+
+  setFocus() {
+    this.textInput.setFocus();
+  }
 
   constructor(private storage: Storage) {
   }
@@ -58,12 +64,14 @@ export class HomePage implements AfterViewInit {
         // speech
         this.speech(this.text);
         // clear buffer
-        this.text= '';
+        this.text = '';
         break;
       default:
         // addChar
         this.text += char;
     }
+
+    this.setFocus();
   }
 
   speech(txt) {
