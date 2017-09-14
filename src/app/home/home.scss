@@ -1,5 +1,9 @@
 home {
- ion-grid {
-   max-width: 350px !important;
- }
+  .selectable {
+    user-select: text;
+  }
+
+  ion-grid {
+    max-width: 350px !important;
+  }
 }
