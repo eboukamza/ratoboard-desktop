@@ -24,7 +24,7 @@
   </button>
 
   <ion-list class="selectable">
-    <ion-item *ngFor="let record of registry">[{{record.date | date:'HH:mm:ss'  }}] {{record.msg}}</ion-item>
+    <ion-item *ngFor="let record of registry">[{{ record.date | date:'HH:mm:ss' }}] {{record.msg}}</ion-item>
   </ion-list>
 
 </ion-content>

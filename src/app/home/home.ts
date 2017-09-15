@@ -54,10 +54,16 @@ export class HomePage implements AfterViewInit {
   digest(char) {
     console.debug('digest', char);
     switch (char) {
-      case '<-':
+      // SPACE
+      case '_':
+        this.text += ' ';
+        break;
+      // BACKSPACE
+      case '&#xf28f;':
         this.text = this.text.slice(0, -1); // backspace
         break;
-      case '<-|':
+      // SEND
+      case '&#xf376;':
         //save into registry
         this.registry.unshift({msg: this.text, date: new Date()});
         this.storage.set('registry', this.registry);

@@ -5,11 +5,13 @@ import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {HomePage} from './home/home';
 import {IonicStorageModule} from '@ionic/storage';
 import {RatoBoard} from "./home/ratoboard/ratoboard.component";
+import {RatoKeyDirective} from "./home/ratoboard/ratokey.directive";
 
 
 @NgModule({
   declarations: [
     HomePage,
+    RatoKeyDirective,
     RatoBoard
   ],
   imports: [

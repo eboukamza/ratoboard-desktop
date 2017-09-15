@@ -15,14 +15,14 @@ export class RatoBoard implements AfterViewInit {
     ['h', 'j', 'k', 'l', 'm'],
     ['n', 'ñ', 'p', 'q', 'r'],
     ['s', 't', 'v', 'w', 'x'],
-    ['y', 'z', ' ', '<-', '<-|']
+    ['y', 'z', '_', '&#xf28f;', '&#xf376;']
   ];
 
   currentIndex;
   currentIndex2;
 
   first;
-  vowelSubject: Subject<Vowel> = new Subject<Vowel>();
+  indexSubject: Subject<number> = new Subject<number>();
 
   @Input()
   duration: number = 1500;
@@ -39,11 +39,9 @@ export class RatoBoard implements AfterViewInit {
     this.clockTick();
 
     // add click event handler
-    const vowels: [Vowel] = this.ABC[0] as [Vowel];
     let getIndex = () => this.first ? this.currentIndex : this.currentIndex2;
     document.addEventListener('click', () => {
-      let key = vowels[getIndex()];
-      this.vowelSubject.next(key);
+      this.indexSubject.next(getIndex());
     });
 
     // loop cycles
@@ -70,43 +68,37 @@ export class RatoBoard implements AfterViewInit {
     let selectIndex = this.first ? ++this.currentIndex : ++this.currentIndex2;
 
     if (selectIndex >= this.ABC.length - 1) {
-      this.vowelSubject.next(undefined);
+      this.indexSubject.next(-1); // emit nothing
     }
   }
 
   async cycle(): Promise<string> {
-    let streamVowels = this.vowelSubject.asObservable();
+    let streamIndex = this.indexSubject.asObservable();
 
     this.first = true;
     this.currentIndex = -1;
     this.currentIndex2 = -1;
 
-    let vowel1 = await streamVowels.take(1).toPromise();
+    let index1 = await streamIndex.take(1).toPromise();
 
-    if (!vowel1) {
+    if (index1 === -1) {
       // CASE return nothing
       return '';
     }
 
     this.first = false;
 
-    let vowel2 = await streamVowels.take(1).toPromise();
+    let vowel2 = await streamIndex.take(1).toPromise();
 
-    if (!vowel2) {
+    if (vowel2 === -1) {
       // CASE return vowel
-      return vowel1;
+      return this.ABC[0][index1];
     }
 
     // CASE return Character
-    let getVowelIndex = (vowel: Vowel): number => {
-      const vowelsIndex = {'a': 0, 'e': 1, 'i': 2, 'o': 3, 'u': 4};
-      return vowelsIndex[vowel];
-    };
     const consonants = this.ABC.slice(1);
 
-    let vowelIndex1 = getVowelIndex(vowel1);
-    let vowelIndex2 = getVowelIndex(vowel2);
-    // vowel2 and vowel1 are switched because the first vowel is the the cols.
-    return consonants[vowelIndex2][vowelIndex1];
+    // vowel2 and index1 are switched because the first vowel is the col.
+    return consonants[vowel2][index1];
   }
 }
