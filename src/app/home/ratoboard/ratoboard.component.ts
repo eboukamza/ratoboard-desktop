@@ -1,8 +1,6 @@
 import {AfterViewInit, Component, EventEmitter, Input, Output} from "@angular/core";
 import {Subject} from "rxjs";
 
-type Vowel = 'a' | 'e' | 'i' | 'o' | 'u';
-
 @Component({
   selector: 'ratoboard',
   templateUrl: 'ratoboard.component.html'
@@ -10,12 +8,12 @@ type Vowel = 'a' | 'e' | 'i' | 'o' | 'u';
 export class RatoBoard implements AfterViewInit {
 
   public ABC = [
-    ['a', 'e', 'i', 'o', 'u'],
-    ['b', 'c', 'd', 'f', 'g'],
-    ['h', 'j', 'k', 'l', 'm'],
-    ['n', 'ñ', 'p', 'q', 'r'],
-    ['s', 't', 'v', 'w', 'x'],
-    ['y', 'z', '_', '&#xf28f;', '&#xf376;']
+    ['', 'a', 'e', 'i', 'o', 'u'],
+    ['_','b', 'c', 'd', 'f', 'g'],
+    ['&#xf28f;','h', 'j', 'k', 'l', 'm'],
+    ['!','n', 'ñ', 'p', 'q', 'r'],
+    ['?','s', 't', 'v', 'w', 'x'],
+    ['&#xf376;', 'y', 'z', '', '', '']
   ];
 
   currentIndex;
@@ -66,8 +64,9 @@ export class RatoBoard implements AfterViewInit {
 
   private updateIndex() {
     let selectIndex = this.first ? ++this.currentIndex : ++this.currentIndex2;
+    let maxIndex = this.first ? this.ABC[0].length : this.ABC.length - 1;
 
-    if (selectIndex >= this.ABC.length - 1) {
+    if (selectIndex >= maxIndex) {
       this.indexSubject.next(-1); // emit nothing
     }
   }

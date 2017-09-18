@@ -6,6 +6,8 @@ import {IonicModule} from 'ionic-angular';
 import {IonicStorageModule} from '@ionic/storage';
 
 import {HomePage} from './home';
+import {RatoBoard} from "./ratoboard/ratoboard.component";
+import {RatoKeyDirective} from "./ratoboard/ratokey.directive";
 
 describe('HomePage', () => {
   let de: DebugElement;
@@ -14,7 +16,7 @@ describe('HomePage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomePage],
+      declarations: [HomePage, RatoBoard, RatoKeyDirective],
       imports: [
         IonicStorageModule.forRoot(),
         IonicModule.forRoot(HomePage)
