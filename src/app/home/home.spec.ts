@@ -14,7 +14,7 @@ describe('HomePage', () => {
   let comp: HomePage;
   let fixture: ComponentFixture<HomePage>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [HomePage, RatoBoard, RatoKeyDirective],
       imports: [
@@ -22,9 +22,7 @@ describe('HomePage', () => {
         IonicModule.forRoot(HomePage)
       ]
     });
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(HomePage);
     comp = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('ion-title'));
