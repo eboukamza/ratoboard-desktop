@@ -1,6 +1,6 @@
 <ion-menu [content]="mycontent" swipeEnabled="false" side="right">
 
-  <ion-content>
+  <ion-content stop-propagation>
     <ion-item>
         <ion-label>Mantener el foco</ion-label>
         <ion-toggle [(ngModel)]="keepFocus"></ion-toggle>
@@ -12,7 +12,7 @@
   <ion-toolbar>
     <ion-title>RatoBoard!</ion-title>
 
-    <button ion-button icon-only menuToggle right>
+    <button ion-button icon-only menuToggle right stop-propagation>
       <ion-icon name="settings"></ion-icon>
     </button>
 
@@ -23,18 +23,19 @@
 
   <ion-grid>
     <ratoboard (newChar)="digest($event)" [duration]="duration"></ratoboard>
-    <ion-item>
-      <ion-range min="500" max="5000" step="100" [(ngModel)]="duration" (ngModelChange)="saveDuration(duration)"></ion-range>
+    <ion-item stop-propagation>
+      <ion-range min="500" max="5000" step="100" [(ngModel)]="duration" (ngModelChange)="saveDuration(duration)">
+      </ion-range>
     </ion-item>
 
   </ion-grid>
 
   <ion-item>
     <ion-label><ion-icon name="arrow-forward"></ion-icon></ion-label>
-    <ion-input clearInput #textInput autofocus type="text" [(ngModel)]="text"></ion-input>
+    <ion-input clearInput #textInput autofocus type="text" [(ngModel)]="text" stop-propagation></ion-input>
   </ion-item>
 
-  <button ion-button icon-only (click)="clearRegistry()" clear>
+  <button ion-button icon-only (click)="clearRegistry()" clear stop-propagation>
     <ion-icon name="ios-trash-outline"></ion-icon>
   </button>
 

@@ -38,6 +38,7 @@ export class RatoBoard implements AfterViewInit {
 
     // add click event handler
     let getIndex = () => this.first ? this.currentIndex : this.currentIndex2;
+
     document.addEventListener('click', () => {
       this.indexSubject.next(getIndex());
     });
