@@ -1,10 +1,25 @@
+<ion-menu [content]="mycontent" swipeEnabled="false" side="right">
+
+  <ion-content>
+    <ion-item>
+        <ion-label>Mantener el foco</ion-label>
+        <ion-toggle [(ngModel)]="keepFocus"></ion-toggle>
+      </ion-item>
+  </ion-content>
+</ion-menu>
+
 <ion-header>
-  <ion-navbar>
+  <ion-toolbar>
     <ion-title>RatoBoard!</ion-title>
-  </ion-navbar>
+
+    <button ion-button icon-only menuToggle right>
+      <ion-icon name="settings"></ion-icon>
+    </button>
+
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding #mycontent>
 
   <ion-grid>
     <ratoboard (newChar)="digest($event)" [duration]="duration"></ratoboard>

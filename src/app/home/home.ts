@@ -11,6 +11,12 @@ export class HomePage implements AfterViewInit {
 
   @ViewChild('textInput') textInput;
 
+  text = '';
+
+  duration = DEFAULT_DURATION_MS;
+  keepFocus= true;
+  registry = [];
+
   setFocus() {
     this.textInput.setFocus();
   }
@@ -46,11 +52,6 @@ export class HomePage implements AfterViewInit {
     this.storage.set('duration', duration);
   }
 
-  text = '';
-
-  duration = DEFAULT_DURATION_MS;
-  registry = [];
-
   digest(char) {
     console.debug('digest', char);
     switch (char) {
@@ -77,7 +78,10 @@ export class HomePage implements AfterViewInit {
         this.text += char;
     }
 
-    this.setFocus();
+    if (this.keepFocus){
+      this.setFocus();
+    }
+
   }
 
   speech(txt) {
