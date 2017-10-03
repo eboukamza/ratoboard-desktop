@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, HostListener, ViewChild} from '@angular/core';
 import {Storage} from '@ionic/storage';
 
 const DEFAULT_DURATION_MS = 1500;
@@ -16,6 +16,13 @@ export class HomePage implements AfterViewInit {
   duration = DEFAULT_DURATION_MS;
   keepFocus= true;
   registry = [];
+
+  clickEmitter = new EventEmitter<void>();
+
+  @HostListener('click')
+  selectKey(){
+    this.clickEmitter.next();
+  }
 
   setFocus() {
     this.textInput.setFocus();

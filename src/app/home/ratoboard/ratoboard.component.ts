@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, EventEmitter, Input, Output} from "@angular/core";
 import {Subject} from "rxjs";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'ratoboard',
@@ -23,6 +24,16 @@ export class RatoBoard implements AfterViewInit {
   indexSubject: Subject<number> = new Subject<number>();
 
   @Input()
+  set select(selectEvent: Observable<void>){
+    // add click event handler
+    let getIndex = () => this.first ? this.currentIndex : this.currentIndex2;
+
+    selectEvent.subscribe(() => {
+      this.indexSubject.next(getIndex());
+    });
+  }
+
+  @Input()
   duration: number = 1500;
 
   @Output()
@@ -35,13 +46,6 @@ export class RatoBoard implements AfterViewInit {
   async initRato() {
     //init clock
     this.clockTick();
-
-    // add click event handler
-    let getIndex = () => this.first ? this.currentIndex : this.currentIndex2;
-
-    document.addEventListener('click', () => {
-      this.indexSubject.next(getIndex());
-    });
 
     // loop cycles
     while (true) {
