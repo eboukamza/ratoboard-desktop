@@ -1,37 +1,24 @@
-import {AfterViewInit, Component, EventEmitter, Input, Output} from "@angular/core";
-import {Subject} from "rxjs";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'ratoboard',
   templateUrl: 'ratoboard.component.html'
 })
-export class RatoBoard implements AfterViewInit {
+export class RatoBoard implements OnInit {
 
   public ABC = [
     ['', 'a', 'e', 'i', 'o', 'u'],
-    ['_','b', 'c', 'd', 'f', 'g'],
-    ['&#xf28f;','h', 'j', 'k', 'l', 'm'],
-    ['!','n', 'ñ', 'p', 'q', 'r'],
-    ['?','s', 't', 'v', 'w', 'x'],
+    ['_', 'b', 'c', 'd', 'f', 'g'],
+    ['&#xf28f;', 'h', 'j', 'k', 'l', 'm'],
+    ['!', 'n', 'ñ', 'p', 'q', 'r'],
+    ['?', 's', 't', 'v', 'w', 'x'],
     ['&#xf376;', 'y', 'z', '', '', '']
   ];
 
   currentIndex;
   currentIndex2;
-
   first;
-  indexSubject: Subject<number> = new Subject<number>();
-
-  @Input()
-  set select(selectEvent: Observable<void>){
-    // add click event handler
-    let getIndex = () => this.first ? this.currentIndex : this.currentIndex2;
-
-    selectEvent.subscribe(() => {
-      this.indexSubject.next(getIndex());
-    });
-  }
 
   @Input()
   duration: number = 1500;
@@ -39,31 +26,48 @@ export class RatoBoard implements AfterViewInit {
   @Output()
   newChar: EventEmitter<string> = new EventEmitter<string>();
 
-  ngAfterViewInit() {
-    this.initRato();
+  @Input()
+  set select(selectEvent: Observable<void>) {
+
+    selectEvent.subscribe(() => {
+      this.selectKey();
+    });
   }
 
-  async initRato() {
+  ngOnInit() {
+    //init rato
+    this.startNewCycle();
     //init clock
     this.clockTick();
+  }
 
-    // loop cycles
-    while (true) {
-      let char = await this.cycle();
-      if (char !== '') {
-        this.newChar.emit(char);
-      }
+  selectKey() {
+
+    if (this.first) {
+      this.first = false;
+      return;
     }
+    let index1 = this.currentIndex;
+    // (double-click) when the currentIndex2 is not selected then use the first line
+    let index2 = this.currentIndex2 === -1 ? 0 : this.currentIndex2;
+
+    let newChar = this.ABC[index2][index1];
+    this.newChar.emit(newChar);
+
+    this.startNewCycle();
+  }
+
+  startNewCycle() {
+    this.first = true;
+    this.currentIndex = -1;
+    this.currentIndex2 = -1;
   }
 
   clockTick() {
-
     this.updateIndex();
 
-    let theMotherOfRato = this;
     setTimeout(() => {
-      // TODO check if theMotherOfRato is need
-      theMotherOfRato.clockTick();
+      this.clockTick();
     }, this.duration);
   }
 
@@ -72,36 +76,7 @@ export class RatoBoard implements AfterViewInit {
     let maxIndex = this.first ? this.ABC[0].length : this.ABC.length;
 
     if (selectIndex >= maxIndex) {
-      this.indexSubject.next(-1); // emit nothing
+      this.startNewCycle();
     }
-  }
-
-  async cycle(): Promise<string> {
-    let streamIndex = this.indexSubject.asObservable();
-
-    // Reset Cycle
-    this.first = true;
-    this.currentIndex = -1;
-    this.currentIndex2 = -1;
-
-    let index1 = await streamIndex.take(1).toPromise();
-
-    if (index1 === -1) {
-      // CASE nothing selected
-      return '';
-    }
-
-    this.first = false;
-
-    let index2 = await streamIndex.take(1).toPromise();
-
-    if (index2 === -1) {
-      // CASE only row selected (vowels)
-      return this.ABC[0][index1];
-    }
-
-    // CASE row and line selected
-    // index2 and index1 are switched because the first vowel is the col.
-    return this.ABC[index2][index1];
   }
 }

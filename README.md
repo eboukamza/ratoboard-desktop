@@ -12,7 +12,6 @@ Uses
 -------
 
 - [x] SpeechSynthesis API
-- [x] async/await
 - [x] RxJs
 - [x] LocalStorage
 - [x] Service Worker

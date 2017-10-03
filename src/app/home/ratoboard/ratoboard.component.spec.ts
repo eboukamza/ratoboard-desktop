@@ -42,4 +42,32 @@ describe('Ratoboard Component', () => {
     expect(active2).toBe(comp.ABC[comp.currentIndex2][comp.currentIndex])
   });
 
+  it('should emit the char of the key selected', () => {
+    fixture.detectChanges();
+    comp.currentIndex2 = 2;
+    comp.currentIndex = 1;
+    comp.first = false;
+    fixture.detectChanges();
+
+    let expectedChar = comp.ABC[2][1];
+    spyOn(comp.newChar, 'emit').and.callThrough();
+
+    comp.selectKey();
+
+    expect(comp.newChar.emit).toHaveBeenCalledWith(expectedChar);
+  });
+
+  it('should emit the char in row 0 if no index2', () => {
+      fixture.detectChanges();
+      comp.currentIndex = 1;
+      comp.first = false;
+      fixture.detectChanges();
+
+      let expectedChar = comp.ABC[0][1];
+      spyOn(comp.newChar, 'emit').and.callThrough();
+
+      comp.selectKey();
+
+      expect(comp.newChar.emit).toHaveBeenCalledWith(expectedChar);
+    });
 });

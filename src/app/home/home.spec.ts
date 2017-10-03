@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
 import {DebugElement} from '@angular/core';
@@ -31,7 +31,6 @@ describe('HomePage', () => {
   it('should create component', () => expect(comp).toBeDefined());
 
   it('should have a title', () => {
-    fixture.detectChanges();
     const title = de.nativeElement;
     expect(title.innerText).toMatch('RatoBoard!');
   });
