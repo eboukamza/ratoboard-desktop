@@ -69,7 +69,7 @@ export class RatoBoard implements AfterViewInit {
 
   private updateIndex() {
     let selectIndex = this.first ? ++this.currentIndex : ++this.currentIndex2;
-    let maxIndex = this.first ? this.ABC[0].length : this.ABC.length - 1;
+    let maxIndex = this.first ? this.ABC[0].length : this.ABC.length;
 
     if (selectIndex >= maxIndex) {
       this.indexSubject.next(-1); // emit nothing
@@ -79,6 +79,7 @@ export class RatoBoard implements AfterViewInit {
   async cycle(): Promise<string> {
     let streamIndex = this.indexSubject.asObservable();
 
+    // Reset Cycle
     this.first = true;
     this.currentIndex = -1;
     this.currentIndex2 = -1;
@@ -86,23 +87,21 @@ export class RatoBoard implements AfterViewInit {
     let index1 = await streamIndex.take(1).toPromise();
 
     if (index1 === -1) {
-      // CASE return nothing
+      // CASE nothing selected
       return '';
     }
 
     this.first = false;
 
-    let vowel2 = await streamIndex.take(1).toPromise();
+    let index2 = await streamIndex.take(1).toPromise();
 
-    if (vowel2 === -1) {
-      // CASE return vowel
+    if (index2 === -1) {
+      // CASE only row selected (vowels)
       return this.ABC[0][index1];
     }
 
-    // CASE return Character
-    const consonants = this.ABC.slice(1);
-
-    // vowel2 and index1 are switched because the first vowel is the col.
-    return consonants[vowel2][index1];
+    // CASE row and line selected
+    // index2 and index1 are switched because the first vowel is the col.
+    return this.ABC[index2][index1];
   }
 }

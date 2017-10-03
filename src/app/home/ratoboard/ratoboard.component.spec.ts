@@ -39,7 +39,7 @@ describe('Ratoboard Component', () => {
     expect(active1).toBe('e');
 
     let active2 = de[1].nativeElement.textContent;
-    expect(active2).toBe('j')
+    expect(active2).toBe(comp.ABC[comp.currentIndex2][comp.currentIndex])
   });
 
 });
