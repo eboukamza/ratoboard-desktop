@@ -70,4 +70,16 @@ describe('Ratoboard Component', () => {
 
       expect(comp.newChar.emit).toHaveBeenCalledWith(expectedChar);
     });
+
+  it('should not emit when the index are not valid', () => {
+       fixture.detectChanges();
+       spyOn(comp.newChar, 'emit').and.callThrough();
+       comp.startNewCycle();
+
+       comp.selectKey();
+       comp.selectKey();
+
+       expect(comp.first).toBeTruthy();
+       expect(comp.newChar.emit).toHaveBeenCalledTimes(0);
+     });
 });

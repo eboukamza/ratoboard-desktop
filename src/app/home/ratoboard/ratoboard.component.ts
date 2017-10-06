@@ -20,6 +20,8 @@ export class RatoBoard implements OnInit {
   currentIndex2;
   first;
 
+  keypressed = false;
+
   @Input()
   duration: number = 1500;
 
@@ -42,6 +44,7 @@ export class RatoBoard implements OnInit {
   }
 
   selectKey() {
+    if(this.currentIndex === -1) return;
 
     if (this.first) {
       this.first = false;
@@ -54,10 +57,11 @@ export class RatoBoard implements OnInit {
     let newChar = this.ABC[index2][index1];
     this.newChar.emit(newChar);
 
-    this.startNewCycle();
+    this.keypressed = true;
   }
 
   startNewCycle() {
+    this.keypressed = false;
     this.first = true;
     this.currentIndex = -1;
     this.currentIndex2 = -1;
@@ -72,6 +76,11 @@ export class RatoBoard implements OnInit {
   }
 
   private updateIndex() {
+    if (this.sleep()) {
+      this.startNewCycle();
+      return;
+    }
+
     let selectIndex = this.first ? ++this.currentIndex : ++this.currentIndex2;
     let maxIndex = this.first ? this.ABC[0].length : this.ABC.length;
 
@@ -79,4 +88,9 @@ export class RatoBoard implements OnInit {
       this.startNewCycle();
     }
   }
+
+  sleep() {
+    return this.keypressed;
+  }
+
 }
