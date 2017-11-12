@@ -6,8 +6,8 @@ import {IonicModule} from 'ionic-angular';
 import {IonicStorageModule} from '@ionic/storage';
 
 import {HomePage} from './home';
-import {RatoBoard} from "./ratoboard/ratoboard.component";
-import {RatoKeyDirective} from "./ratoboard/ratokey.directive";
+import {RatoBoard} from './ratoboard/ratoboard.component';
+import {RatoKeyDirective} from './ratoboard/ratokey.directive';
 
 describe('HomePage', () => {
   let de: DebugElement;
