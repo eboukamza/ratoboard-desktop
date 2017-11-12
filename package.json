@@ -40,6 +40,7 @@
     "angular-cli-ghpages": "^0.5.1",
     "angular2-template-loader": "^0.6.2",
     "codecov": "^1.0.1",
+    "codelyzer": "~4.0.1",
     "html-loader": "^0.4.5",
     "istanbul-instrumenter-loader": "^2.0.0",
     "jasmine": "^2.5.3",
