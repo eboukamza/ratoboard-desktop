@@ -19,4 +19,5 @@ Uses
 - [x] Service Worker
 - [x] Installable Web App in Chrome for Android
 - [x] Unit test in Angular (with TestBed)
+- [x] Continuous integration with circleCI
 - [ ] Component-based architecture (?)
