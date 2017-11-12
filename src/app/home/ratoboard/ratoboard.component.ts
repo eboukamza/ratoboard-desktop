@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-import {Observable} from "rxjs/Observable";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'ratoboard',
@@ -23,7 +23,7 @@ export class RatoBoard implements OnInit {
   keypressed = false;
 
   @Input()
-  duration: number = 1500;
+  duration = 1500;
 
   @Output()
   newChar: EventEmitter<string> = new EventEmitter<string>();
@@ -37,14 +37,14 @@ export class RatoBoard implements OnInit {
   }
 
   ngOnInit() {
-    //init rato
+    // init rato
     this.startNewCycle();
-    //init clock
+    // init clock
     this.clockTick();
   }
 
   selectKey() {
-    if(this.currentIndex === -1) return;
+    if (this.currentIndex === -1) { return; }
 
     if (this.first) {
       this.first = false;

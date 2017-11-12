@@ -1,10 +1,10 @@
-import {ComponentFixture, TestBed} from "@angular/core/testing";
-import {IonicModule} from "ionic-angular";
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {IonicModule} from 'ionic-angular';
 
-import {RatoBoard} from "./ratoboard.component";
-import {RatoKeyDirective} from "./ratokey.directive";
-import {By} from "@angular/platform-browser";
-import {DebugElement} from "@angular/core";
+import {RatoBoard} from './ratoboard.component';
+import {RatoKeyDirective} from './ratokey.directive';
+import {By} from '@angular/platform-browser';
+import {DebugElement} from '@angular/core';
 
 describe('Ratoboard Component', () => {
   let comp: RatoBoard;

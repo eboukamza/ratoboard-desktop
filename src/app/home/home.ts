@@ -20,7 +20,7 @@ export class HomePage implements AfterViewInit {
   clickEmitter = new EventEmitter<void>();
 
   @HostListener('click')
-  selectKey(){
+  selectKey() {
     this.clickEmitter.next();
   }
 
@@ -39,7 +39,7 @@ export class HomePage implements AfterViewInit {
 
   loadRegistry() {
     this.storage.get('registry')
-      .then(registry => this.registry = registry || [])
+      .then(registry => this.registry = registry || []);
   }
 
   loadDuration() {
@@ -72,7 +72,7 @@ export class HomePage implements AfterViewInit {
         break;
       // SEND
       case '&#xf376;':
-        //save into registry
+        // save into registry
         this.registry.unshift({msg: this.text, date: new Date()});
         this.storage.set('registry', this.registry);
         // speech
@@ -85,7 +85,7 @@ export class HomePage implements AfterViewInit {
         this.text += char;
     }
 
-    if (this.keepFocus){
+    if (this.keepFocus) {
       this.setFocus();
     }
 

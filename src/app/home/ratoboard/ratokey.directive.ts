@@ -3,7 +3,7 @@ import {Directive, ElementRef, Input} from '@angular/core';
 @Directive({selector: '[ratoKey]'})
 export class RatoKeyDirective {
 
-  private _key: string = '';
+  private _key = '';
 
   constructor(private el: ElementRef) {
   }
@@ -14,10 +14,10 @@ export class RatoKeyDirective {
   }
 
   set key(val: string) {
-    //TODO explain
+    // TODO explain
     if (/^&/.test(val)) {
       this.el.nativeElement.style.fontFamily = 'Ionicons';
-      this.el.nativeElement.style.fontSize= '20px';
+      this.el.nativeElement.style.fontSize = '20px';
 
     }
     this.el.nativeElement.innerHTML = val;

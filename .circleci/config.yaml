@@ -1,0 +1,28 @@
+
+version: 2
+jobs:
+  build:
+    working_directory: ~/rato-board
+    docker:
+      - image: circleci/node:6-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: install-dependencies
+          command: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+            - ./node_modules
+      - run:
+          name: build
+          command: yarn run build --prod --no-progress
+      - run:
+          name: test
+          command: yarn test -- --single-run --coverage --no-progress
+      - run:
+          name: lint
+          command: yarn lint
