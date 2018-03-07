@@ -69,10 +69,7 @@ export class RatoBoard implements OnInit {
 
   clockTick() {
     this.updateIndex();
-
-    setTimeout(() => {
-      this.clockTick();
-    }, this.duration);
+    setTimeout(() => this.clockTick(), this.duration);
   }
 
   private updateIndex() {

@@ -17,6 +17,11 @@
         .then(() => console.log('service worker installed'))
         .catch(err => console.error('Error', err));
     }
+
+    robot = require("robotjs");
+
+    // Speed up the mouse.
+    robot.setMouseDelay(2);
   </script>
 
   <link href="build/main.css" rel="stylesheet">
