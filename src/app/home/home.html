@@ -21,6 +21,8 @@
 
 <ion-content padding #mycontent>
 
+ <ratocontrol [duration]="duration"></ratocontrol>
+
   <ion-grid>
     <ratoboard (newChar)="digest($event)" [select]="clickEmitter" [duration]="duration"></ratoboard>
     <ion-item stop-propagation> <!-- TODO stop-propagation do not work here-->

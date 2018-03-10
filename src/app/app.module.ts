@@ -7,13 +7,15 @@ import {IonicStorageModule} from '@ionic/storage';
 import {RatoBoard} from './home/ratoboard/ratoboard.component';
 import {RatoKeyDirective} from './home/ratoboard/ratokey.directive';
 import {StopPropagation} from './home/stop-propagation.directive';
+import {RatoControl} from "./home/ratocontrol/ratocontrol.component";
 
 @NgModule({
   declarations: [
     HomePage,
     StopPropagation,
     RatoKeyDirective,
-    RatoBoard
+    RatoBoard,
+    RatoControl
   ],
   imports: [
     BrowserModule,

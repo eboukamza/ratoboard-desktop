@@ -1,11 +1,10 @@
-
-
-  <ion-row *ngFor="let line of ABC; index as rowIndex">
-
-    <ion-col *ngFor="let key of line; index as index"
-             [ngClass]="{'row-selected': currentIndex === index || currentIndex2 === rowIndex,
-                         'active': currentIndex === index && (currentIndex2 === rowIndex || rowIndex == 0) }"
-             [ratoKey]="key">
-    </ion-col>
-
+<ion-grid>
+  <ion-row>
+    <ion-col>Click</ion-col>
+    <ion-col (click)="up()">Up</ion-col>
+    <ion-col>Down</ion-col>
+    <ion-col>Left</ion-col>
+    <ion-col>Right</ion-col>
+    <ion-col>KeyBoard</ion-col>
   </ion-row>
+</ion-grid>
