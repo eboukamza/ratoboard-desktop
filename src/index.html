@@ -21,9 +21,16 @@
     robot = require("robotjs");
 
     let virtualClickEvent = new Event('virtual-click');
-    document.addEventListener('click', (event) => {
-            document.dispatchEvent(virtualClickEvent);
-          });
+
+    var Mouse = require("node-mouse");
+
+    var m = new Mouse();
+
+    // same as mouseup, but fired after
+    m.on("click",function(event) {
+      console.log(event)
+      document.dispatchEvent(virtualClickEvent);
+    });
 
   </script>
 

@@ -92,6 +92,8 @@ export class HomePage implements AfterViewInit {
         this.storage.set('registry', this.registry);
         // speech
         this.speech(this.text);
+        this.robotService.typeString(this.text);
+        this.robotService.doEnter();
         // clear buffer
         this.text = '';
         break;
@@ -129,8 +131,8 @@ export class HomePage implements AfterViewInit {
 
   handleMove(move) {
     switch (move) {
-      case 'click':
-        this.doClick();
+      case 'enter':
+        this.doEnter();
         return;
       case 'keyboard':
         this.doKeyBoard();
@@ -140,8 +142,9 @@ export class HomePage implements AfterViewInit {
     }
   }
 
-  doClick() {
-    console.log('simulate click');
+  doEnter() {
+    this.robotService.doEnter();
+    this.robotService.typeString(this.text);
     this.mouseSelectEmitter.next();
   }
 

@@ -28,5 +28,9 @@ export class RobotService {
   moveRight = (mousePos) => robot.moveMouse(mousePos.x + 1, mousePos.y);
   leftClick = () => robot.mouseClick();
 
+  typeString = (txt) => robot.typeString(txt);
+
+  doEnter = () => robot.keyTap('enter');
+
 
 }

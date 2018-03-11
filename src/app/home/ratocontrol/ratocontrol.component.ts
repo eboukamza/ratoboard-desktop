@@ -13,7 +13,7 @@ export class RatoControl implements OnInit {
   currentIndex;
   keySelected;
 
-  controls = ['click', 'up', 'down', 'left', 'right', 'keyboard'];
+  controls = ['enter', 'up', 'down', 'left', 'right', 'keyboard'];
 
   @Input()
   set select(selectEvent: Observable<void>) {
