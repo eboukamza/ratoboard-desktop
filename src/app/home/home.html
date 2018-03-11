@@ -21,10 +21,10 @@
 
 <ion-content padding #mycontent>
 
- <ratocontrol [duration]="duration"></ratocontrol>
+  <ratocontrol (newMove)="handleMove($event)" [select]="mouseSelectEmitter" [duration]="duration"></ratocontrol>
 
   <ion-grid>
-    <ratoboard (newChar)="digest($event)" [select]="clickEmitter" [duration]="duration"></ratoboard>
+    <ratoboard (newChar)="digest($event)" [disabled]="!isRatoBoardActive()" [select]="keySelectEmitter" [duration]="duration"></ratoboard>
     <ion-item stop-propagation> <!-- TODO stop-propagation do not work here-->
       <ion-range min="500" max="5000" step="100" [(ngModel)]="duration" (ngModelChange)="saveDuration(duration)">
       </ion-range>

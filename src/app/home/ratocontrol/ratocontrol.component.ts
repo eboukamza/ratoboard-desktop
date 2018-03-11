@@ -1,8 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Observable} from "rxjs/Observable";
-
-declare let robot: any;
-const MAX_INDEX = 5; // num of keys.
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'ratocontrol',
@@ -16,6 +13,8 @@ export class RatoControl implements OnInit {
   currentIndex;
   keySelected;
 
+  controls = ['click', 'up', 'down', 'left', 'right', 'keyboard'];
+
   @Input()
   set select(selectEvent: Observable<void>) {
 
@@ -24,23 +23,39 @@ export class RatoControl implements OnInit {
     });
   }
 
+  @Output()
+  newMove: EventEmitter<string> = new EventEmitter<string>();
+
+  reset() {
+    this.currentIndex = -1;
+    this.keySelected = false;
+  }
+
   ngOnInit() {
+    this.reset();
     // init clock
     this.clockTick();
   }
 
   clockTick() {
-    this.currentIndex = ++this.currentIndex % MAX_INDEX;
+    this.updateIndex();
     setTimeout(() => this.clockTick(), this.duration);
+  }
+
+  private updateIndex() {
+    if (!this.keySelected) {
+      this.currentIndex = ++this.currentIndex % this.controls.length;
+    }
   }
 
   handleSelect() {
     this.keySelected = !this.keySelected;
+    if (!this.keySelected) {
+      this.reset();
+    } else {
+      // TODO think about if must be once or each clockTick??
+      this.newMove.emit(this.controls[this.currentIndex.toString()]);
+    }
   }
 
-  up() {
-    console.log('upppp');
-    let mousePos = robot.getMousePos();
-    robot.moveMouse(mousePos.x, mousePos.y + 2);
-  }
 }

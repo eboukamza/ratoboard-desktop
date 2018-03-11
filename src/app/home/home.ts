@@ -1,5 +1,6 @@
-import {AfterViewInit, Component, EventEmitter, HostListener, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, ViewChild} from '@angular/core';
 import {Storage} from '@ionic/storage';
+import {RobotService} from './robot.service';
 
 const DEFAULT_DURATION_MS = 1500;
 
@@ -14,24 +15,38 @@ export class HomePage implements AfterViewInit {
   text = '';
 
   duration = DEFAULT_DURATION_MS;
-  keepFocus= true;
+  keepFocus = true;
   registry = [];
 
-  clickEmitter = new EventEmitter<void>();
+  keySelectEmitter = new EventEmitter<void>();
+  mouseSelectEmitter = new EventEmitter<void>();
 
-  @HostListener('click')
+  activeBoard: string;
+
   selectKey() {
-    this.clickEmitter.next();
+    if (this.activeBoard === 'ratocontrol') {
+      this.mouseSelectEmitter.next();
+    } else {
+      this.keySelectEmitter.next();
+    }
   }
 
   setFocus() {
     this.textInput.setFocus();
   }
 
-  constructor(private storage: Storage) {
+  constructor(private storage: Storage, private robotService: RobotService) {
   }
 
   ngAfterViewInit() {
+
+    // should be global for allow the control outside the window
+    document.addEventListener('virtual-click', () => {
+      console.log('oleee');
+      this.selectKey();
+    });
+
+    this.activeBoard = 'ratocontrol';
     this.loadRegistry();
 
     this.loadDuration();
@@ -80,6 +95,12 @@ export class HomePage implements AfterViewInit {
         // clear buffer
         this.text = '';
         break;
+      case 'exit':
+        // select ratocontrol;
+        this.activeBoard = 'ratocontrol';
+        // notify ratocontrol
+        this.mouseSelectEmitter.next();
+        break;
       default:
         // addChar
         this.text += char;
@@ -105,4 +126,62 @@ export class HomePage implements AfterViewInit {
       console.error(e);
     }
   }
+
+  handleMove(move) {
+    switch (move) {
+      case 'click':
+        this.doClick();
+        return;
+      case 'keyboard':
+        this.doKeyBoard();
+        return;
+      default:
+        this.doMouseMove(move);
+    }
+  }
+
+  doClick() {
+    console.log('simulate click');
+    this.mouseSelectEmitter.next();
+  }
+
+  doKeyBoard() {
+    this.activeBoard = 'ratoboard';
+  }
+
+  doMouseMove(move) {
+    console.log(move);
+    if (!move) {
+      return;
+    }
+    let action;
+    switch (move) {
+      case 'up':
+        action = this.robotService.doMoveUp;
+        break;
+      case 'down':
+        action = this.robotService.doMoveDown;
+        break;
+      case 'left':
+        action = this.robotService.doMoveLeft;
+        break;
+      case 'right':
+        action = this.robotService.doMoveRight;
+        break;
+    }
+
+    let intervalId = setInterval(() => {
+      console.log(move);
+      action();
+    }, 10);
+
+    this.mouseSelectEmitter.subscribe(() => {
+      clearInterval(intervalId);
+    });
+  }
+
+  isRatoBoardActive() {
+    return this.activeBoard === 'ratoboard';
+  }
+
 }

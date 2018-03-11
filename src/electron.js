@@ -34,8 +34,7 @@ function createWindow () {
   })
 
     //keep always de focus
-    //mainWindow.on('blur', () => setTimeout(() => mainWindow.focus(), 200));
-    //mainWindow.on('blur', () => mainWindow.focus());
+    mainWindow.on('blur', () => mainWindow.focus());
 }
 
 // This method will be called when Electron has finished

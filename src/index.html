@@ -20,8 +20,11 @@
 
     robot = require("robotjs");
 
-    // Speed up the mouse.
-    robot.setMouseDelay(2);
+    let virtualClickEvent = new Event('virtual-click');
+    document.addEventListener('click', (event) => {
+            document.dispatchEvent(virtualClickEvent);
+          });
+
   </script>
 
   <link href="build/main.css" rel="stylesheet">

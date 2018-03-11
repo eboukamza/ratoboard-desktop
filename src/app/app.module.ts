@@ -5,9 +5,10 @@ import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {HomePage} from './home/home';
 import {IonicStorageModule} from '@ionic/storage';
 import {RatoBoard} from './home/ratoboard/ratoboard.component';
+import {RatoControl} from './home/ratocontrol/ratocontrol.component';
 import {RatoKeyDirective} from './home/ratoboard/ratokey.directive';
 import {StopPropagation} from './home/stop-propagation.directive';
-import {RatoControl} from "./home/ratocontrol/ratocontrol.component";
+import {RobotService} from './home/robot.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import {RatoControl} from "./home/ratocontrol/ratocontrol.component";
     StopPropagation,
     RatoKeyDirective,
     RatoBoard,
-    RatoControl
+    RatoControl,
   ],
   imports: [
     BrowserModule,
@@ -25,10 +26,12 @@ import {RatoControl} from "./home/ratocontrol/ratocontrol.component";
   bootstrap: [IonicApp],
   entryComponents: [
     HomePage,
-    RatoBoard
+    RatoBoard,
+    RatoControl
   ],
   providers: [
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RobotService
   ]
 })
 export class AppModule {}

@@ -13,8 +13,11 @@ export class RatoBoard implements OnInit {
     ['&#xf28f;', 'h', 'j', 'k', 'l', 'm'],
     ['!', 'n', 'ñ', 'p', 'q', 'r'],
     ['?', 's', 't', 'v', 'w', 'x'],
-    ['&#xf376;', 'y', 'z', '', '', '']
+    ['&#xf376;', 'y', 'z', '', '', 'exit']
   ];
+
+  @Input()
+  disabled = false;
 
   currentIndex;
   currentIndex2;
@@ -87,7 +90,7 @@ export class RatoBoard implements OnInit {
   }
 
   sleep() {
-    return this.keypressed;
+    return this.disabled || this.keypressed;
   }
 
 }
