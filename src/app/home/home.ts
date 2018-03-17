@@ -1,6 +1,6 @@
-import {AfterViewInit, Component, EventEmitter, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, HostListener, ViewChild} from '@angular/core';
 import {Storage} from '@ionic/storage';
-import {RobotService} from './robot.service';
+import {RobotService} from '../robot/robot.service';
 
 const DEFAULT_DURATION_MS = 1500;
 

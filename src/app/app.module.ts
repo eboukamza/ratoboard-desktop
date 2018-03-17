@@ -8,7 +8,9 @@ import {RatoBoard} from './home/ratoboard/ratoboard.component';
 import {RatoControl} from './home/ratocontrol/ratocontrol.component';
 import {RatoKeyDirective} from './home/ratoboard/ratokey.directive';
 import {StopPropagation} from './home/stop-propagation.directive';
-import {RobotService} from './home/robot.service';
+import {RobotService} from './robot/robot.service';
+import {Robot} from './robot/robot';
+import {robotFactory} from './robot/robot.factory';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import {RobotService} from './home/robot.service';
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: Robot, useFactory: robotFactory},
     RobotService
   ]
 })
