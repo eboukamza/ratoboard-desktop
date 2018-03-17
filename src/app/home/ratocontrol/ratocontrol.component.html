@@ -1,10 +1,10 @@
 <ion-grid>
   <ion-row>
     <ion-col [ngClass]="{'active': currentIndex === 0}">Enter</ion-col>
-    <ion-col [ngClass]="{'active': currentIndex === 1}">Up</ion-col>
-    <ion-col [ngClass]="{'active': currentIndex === 2}">Down</ion-col>
-    <ion-col [ngClass]="{'active': currentIndex === 3}">Left</ion-col>
-    <ion-col [ngClass]="{'active': currentIndex === 4}">Right</ion-col>
+    <ion-col [ngClass]="{'active': currentIndex === 1}"><ion-icon name="arrow-round-up"></ion-icon></ion-col>
+    <ion-col [ngClass]="{'active': currentIndex === 2}"><ion-icon name="arrow-round-down"></ion-icon></ion-col>
+    <ion-col [ngClass]="{'active': currentIndex === 3}"><ion-icon name="arrow-round-back"></ion-icon></ion-col>
+    <ion-col [ngClass]="{'active': currentIndex === 4}"><ion-icon name="arrow-round-forward"></ion-icon></ion-col>
     <ion-col [ngClass]="{'active': currentIndex === 5}">KeyBoard</ion-col>
   </ion-row>
 </ion-grid>
