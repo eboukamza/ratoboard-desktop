@@ -8,6 +8,10 @@ import {IonicStorageModule} from '@ionic/storage';
 import {HomePage} from './home';
 import {RatoBoard} from './ratoboard/ratoboard.component';
 import {RatoKeyDirective} from './ratoboard/ratokey.directive';
+import {RatoControl} from './ratocontrol/ratocontrol.component';
+import {Robot} from '../robot/robot';
+import {RobotMock} from '../robot/robot-mock';
+import {RobotService} from '../robot/robot.service';
 
 describe('HomePage', () => {
   let de: DebugElement;
@@ -16,10 +20,14 @@ describe('HomePage', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HomePage, RatoBoard, RatoKeyDirective],
+      declarations: [HomePage, RatoBoard, RatoKeyDirective, RatoControl],
       imports: [
         IonicStorageModule.forRoot(),
         IonicModule.forRoot(HomePage)
+      ],
+      providers: [
+        {provide: Robot, useClass: RobotMock},
+        RobotService
       ]
     });
 
@@ -30,8 +38,4 @@ describe('HomePage', () => {
 
   it('should create component', () => expect(comp).toBeDefined());
 
-  it('should have a title', () => {
-    const title = de.nativeElement;
-    expect(title.innerText).toMatch('RatoBoard!');
-  });
 });
