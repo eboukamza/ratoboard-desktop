@@ -82,7 +82,7 @@ export class HomePage implements AfterViewInit {
         // clear buffer
         this.text = '';
         break;
-      case 'exit':
+      case '&#xf2e6':
         // select ratocontrol;
         this.activeBoard = 'ratocontrol';
         // notify ratocontrol

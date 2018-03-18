@@ -21,9 +21,15 @@
     </ion-item>
   </ion-grid>
 
-  <ion-item>
-    Velocidad barrido {{duration / 1000 | number:'1.1-1'}} s. Velocidad ratón {{mouseSpeed}} ms
-    <strong *ngIf="!ratoControlActive">Control del ratón Desactivado</strong>
-  </ion-item>
+  <ion-footer no-border>
+    <ion-toolbar>
+      <ion-item>
+        <img class="rato-icon" src="assets/icon-speed.png" /> {{duration / 1000 | number:'1.1-1'}} s.
+        <img class="rato-icon" [src]="ratoControlActive ? 'assets/icon-mouse.png': 'assets/icon-mouse-off.png'" /> {{mouseSpeed}} ms.
+      </ion-item>
+    </ion-toolbar>
+  </ion-footer>
+
+
 
 </ion-content>
