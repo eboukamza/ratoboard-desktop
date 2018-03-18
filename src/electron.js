@@ -12,8 +12,21 @@ const url = require('url');
 let mainWindow;
 
 function createWindow () {
+
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600, center:false});
+  const {width} = electron.screen.getPrimaryDisplay().workAreaSize;
+
+  mainWindow = new BrowserWindow({
+    width: 400,
+    height: 480,
+    x: width - 400,
+    y: 0,
+    center:false,
+    resizable: false,
+    alwaysOnTop: true,
+  });
+
+  mainWindow.setMenu(null);
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
