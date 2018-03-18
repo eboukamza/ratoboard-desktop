@@ -3,6 +3,7 @@ import {Storage} from '@ionic/storage';
 import {RobotService} from '../robot/robot.service';
 
 const DEFAULT_DURATION_MS = 1500;
+const DEFAULT_MOUSE_SPEED = 10;
 
 @Component({
   selector: 'home',
@@ -10,17 +11,17 @@ const DEFAULT_DURATION_MS = 1500;
 })
 export class HomePage implements AfterViewInit {
 
-  @ViewChild('textInput') textInput;
-
-  text = '';
-
   duration = DEFAULT_DURATION_MS;
+  activeBoard: string;
 
+  @ViewChild('textInput') textInput;
+  text = '';
   keySelectEmitter = new EventEmitter<void>();
+
+  mouseSpeed = DEFAULT_MOUSE_SPEED;
+  ratoControlActive = true;
   mouseSelectEmitter = new EventEmitter<void>();
 
-  activeBoard: string;
-  ratoControlActive = true;
 
   selectKey() {
     if (this.activeBoard === 'ratocontrol') {
@@ -46,13 +47,15 @@ export class HomePage implements AfterViewInit {
 
     this.activeBoard = 'ratocontrol';
 
-    this.loadDuration();
+    this.loadConfig();
   }
 
-  loadDuration() {
+  loadConfig() {
     // use the duration stored if exists
     this.storage.get('duration')
       .then(duration => this.duration = duration || DEFAULT_DURATION_MS)
+      .then(() => this.storage.get('mouseSpeed'))
+      .then(mouseSpeed => this.mouseSpeed = mouseSpeed || DEFAULT_MOUSE_SPEED)
       .catch(err => console.error(err));
   }
 
@@ -142,7 +145,7 @@ export class HomePage implements AfterViewInit {
     let intervalId = setInterval(() => {
       console.log(move);
       action();
-    }, 10);
+    }, this.mouseSpeed);
 
     this.mouseSelectEmitter.subscribe(() => {
       clearInterval(intervalId);
@@ -155,6 +158,10 @@ export class HomePage implements AfterViewInit {
 
   isRatoBoardActive() {
     return this.activeBoard === 'ratoboard';
+  }
+
+  saveMouseSpeed(mouseSpeed) {
+    this.storage.set('mouseSpeed', mouseSpeed);
   }
 
 }
