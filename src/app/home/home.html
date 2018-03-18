@@ -1,5 +1,6 @@
 <ion-content padding>
-  <ratocontrol (newMove)="handleMove($event)" [select]="mouseSelectEmitter" [duration]="duration"></ratocontrol>
+  <ion-toggle [(ngModel)]="ratoControlActive"></ion-toggle>
+  <ratocontrol (newMove)="handleMove($event)" [disabled]="isRatoControlActive()" [select]="mouseSelectEmitter" [duration]="duration"></ratocontrol>
 
   <ion-grid>
     <ion-item>

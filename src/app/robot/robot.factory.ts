@@ -6,7 +6,7 @@ export function robotFactory() {
     robot.setMouseDelay(2);
     return robot;
   } catch (err) {
-    console.warn('Use Robot as Mock');
+    console.warn('Use Robot as Mock', err);
     return new RobotMock;
   }
 }

@@ -10,6 +10,9 @@ export class RatoControl implements OnInit {
   @Input()
   duration = 1500;
 
+  @Input()
+  disabled = false;
+
   currentIndex;
   keySelected;
 
@@ -43,7 +46,7 @@ export class RatoControl implements OnInit {
   }
 
   private updateIndex() {
-    if (!this.keySelected) {
+    if (!this.keySelected && !this.disabled) {
       this.currentIndex = ++this.currentIndex % this.controls.length;
     }
   }

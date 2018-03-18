@@ -20,6 +20,7 @@ export class HomePage implements AfterViewInit {
   mouseSelectEmitter = new EventEmitter<void>();
 
   activeBoard: string;
+  ratoControlActive = true;
 
   selectKey() {
     if (this.activeBoard === 'ratocontrol') {
@@ -146,6 +147,10 @@ export class HomePage implements AfterViewInit {
     this.mouseSelectEmitter.subscribe(() => {
       clearInterval(intervalId);
     });
+  }
+
+  isRatoControlActive() {
+    return !this.ratoControlActive;
   }
 
   isRatoBoardActive() {

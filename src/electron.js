@@ -3,7 +3,6 @@ const electron = require('electron');
 const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
-
 const path = require('path');
 const url = require('url');
 
@@ -18,7 +17,7 @@ function createWindow () {
 
   mainWindow = new BrowserWindow({
     width: 400,
-    height: 480,
+    height: 500,
     x: width - 400,
     y: 0,
     center:false,
