@@ -49,6 +49,7 @@ export class RatoControl implements OnInit {
   }
 
   handleSelect() {
+    if (this.currentIndex === -1) { return; }
     this.keySelected = !this.keySelected;
     if (!this.keySelected) {
       this.reset();
