@@ -22,15 +22,15 @@
 
     let virtualClickEvent = new Event('virtual-click');
 
-    var Mouse = require("node-mouse");
+    const ioHook = require('iohook');
 
-    var m = new Mouse();
-
-    // same as mouseup, but fired after
-    m.on("click",function(event) {
-      console.log(event)
+    ioHook.on("mouseup", event => {
+      console.log(event);
       document.dispatchEvent(virtualClickEvent);
     });
+
+    //Register and start hook
+    ioHook.start();
 
   </script>
 
