@@ -15,8 +15,6 @@ export class HomePage implements AfterViewInit {
   text = '';
 
   duration = DEFAULT_DURATION_MS;
-  keepFocus = true;
-  registry = [];
 
   keySelectEmitter = new EventEmitter<void>();
   mouseSelectEmitter = new EventEmitter<void>();
@@ -42,19 +40,12 @@ export class HomePage implements AfterViewInit {
 
     // should be global for allow the control outside the window
     document.addEventListener('virtual-click', () => {
-      console.log('oleee');
       this.selectKey();
     });
 
     this.activeBoard = 'ratocontrol';
-    this.loadRegistry();
 
     this.loadDuration();
-  }
-
-  loadRegistry() {
-    this.storage.get('registry')
-      .then(registry => this.registry = registry || []);
   }
 
   loadDuration() {
@@ -62,11 +53,6 @@ export class HomePage implements AfterViewInit {
     this.storage.get('duration')
       .then(duration => this.duration = duration || DEFAULT_DURATION_MS)
       .catch(err => console.error(err));
-  }
-
-  clearRegistry() {
-    this.registry = [];
-    this.storage.remove('registry');
   }
 
   saveDuration(duration) {
@@ -87,11 +73,6 @@ export class HomePage implements AfterViewInit {
         break;
       // SEND
       case '&#xf376;':
-        // save into registry
-        this.registry.unshift({msg: this.text, date: new Date()});
-        this.storage.set('registry', this.registry);
-        // speech
-        this.speech(this.text);
         this.robotService.typeString(this.text);
         this.robotService.doEnter();
         // clear buffer
@@ -108,25 +89,8 @@ export class HomePage implements AfterViewInit {
         this.text += char;
     }
 
-    if (this.keepFocus) {
-      this.setFocus();
-    }
+    this.setFocus();
 
-  }
-
-  speech(txt) {
-    try {
-      let msg = new SpeechSynthesisUtterance();
-
-      let voices = window.speechSynthesis.getVoices();
-      let spanishVoice = voices.map(voice => voice.lang).indexOf('es-ES');
-      msg.voice = voices[spanishVoice];
-      msg.text = txt;
-      msg.lang = 'es-ES';
-      speechSynthesis.speak(msg);
-    } catch (e) {
-      console.error(e);
-    }
   }
 
   handleMove(move) {
@@ -149,6 +113,7 @@ export class HomePage implements AfterViewInit {
   }
 
   doKeyBoard() {
+    this.setFocus();
     this.activeBoard = 'ratoboard';
   }
 
