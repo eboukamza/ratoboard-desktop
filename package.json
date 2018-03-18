@@ -17,7 +17,7 @@
     "gh-pages": "ngh --dir www --message=\"new release\""
   },
   "config": {
-    "ionic_copy":"./config/custom.copy.js"
+    "ionic_copy": "./config/custom.copy.js"
   },
   "dependencies": {
     "@angular/common": "5.0.0",

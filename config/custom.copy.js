@@ -4,7 +4,7 @@ module.exports = {
     dest: '{{WWW}}/assets'
   },
   copyIndexContent: {
-    src: ['{{SRC}}/index.html', '{{SRC}}/manifest.json', '{{SRC}}/service-worker.js'],
+    src: ['{{SRC}}/index.html', '{{SRC}}/manifest.json'],
     dest: '{{WWW}}'
   },
   copyFonts: {
