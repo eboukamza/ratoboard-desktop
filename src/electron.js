@@ -23,6 +23,7 @@ function createWindow () {
     center:false,
     resizable: false,
     alwaysOnTop: true,
+    icon: path.join(__dirname, 'assets/logo.png')
   });
 
   mainWindow.setMenu(null);
