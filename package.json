@@ -1,7 +1,7 @@
 {
-  "name": "rato-web",
-  "version": "0.0.0",
-  "author": "Elias Zain",
+  "name": "ratoboard",
+  "version": "1.0.0-beta",
+  "author": "Elias Zain <ezain2t@gmail.com>",
   "private": true,
   "main": "www/electron.js",
   "scripts": {
@@ -13,12 +13,30 @@
     "electron": "electron .",
     "test": "karma start ./test-config/karma.conf.js",
     "test-coverage": "npm run test -- --single-run --coverage",
-    "release": "ionic-app-scripts build --prod && npm run gh-pages",
-    "gh-pages": "ngh --dir www --message=\"new release\""
+    "release": "ionic-app-scripts build --prod && build",
+    "gh-pages": "ngh --dir www --message=\"new release\"",
+    "build-linux": "electron-packager . build-with-native-modules --overwrite --platform=linux --arch=x64 --icon=assets/logo.png --prune=true --out=dist",
+    "build-win": "electron-packager . --asar --prune --overwrite --platform=win32 --arch=x64 --out=dist",
+    "dist": "build"
+  },
+  "build": {
+    "appId": "ezain.ratotron",
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+    }
   },
   "config": {
     "ionic_copy": "./config/custom.copy.js"
   },
+  "repository": {
+      "type": "git",
+      "url": "git+https://github.com/eboukamza/ratoboard.git"
+    },
   "dependencies": {
     "@angular/common": "5.0.0",
     "@angular/compiler": "5.0.0",
@@ -47,6 +65,9 @@
     "codecov": "^1.0.1",
     "codelyzer": "~4.0.1",
     "electron": "~1.8.4",
+    "electron-packager": "^11.1.0",
+    "electron-rebuild": "~1.7.3",
+    "electron-builder": "latest",
     "html-loader": "^0.4.5",
     "istanbul-instrumenter-loader": "^2.0.0",
     "jasmine": "^2.5.3",
@@ -68,9 +89,7 @@
       "electron-57"
     ],
     "platforms": [
-      "win32",
-      "darwin",
-      "linux"
+      "win32"
     ],
     "arches": [
       "x64"
