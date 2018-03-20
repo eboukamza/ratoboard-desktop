@@ -35,10 +35,10 @@ function createWindow () {
     slashes: true
   }));
 
-  // Debug Open the DevTools.
-   mainWindow.webContents.openDevTools();
-   mainWindow.setResizable(true);
-   mainWindow.maximize();
+   // Debug Open the DevTools.
+   // mainWindow.webContents.openDevTools();
+   // mainWindow.setResizable(true);
+   // mainWindow.maximize();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
