@@ -1,0 +1,21 @@
+{
+  "appId": "ezain.ratoboard-desktop",
+  "productName": "RatoBoard",
+  "directories": {
+    "buildResources": "build-assets",
+    "output": "dist"
+  },
+  "files": [
+    "www/**/*"
+  ],
+  "linux": {
+    "category": "Universal Access",
+    "icon": "www/assets/",
+    "target": [
+      "deb"
+    ]
+  },
+  "win": {
+    "icon": "icon.ico"
+  }
+}

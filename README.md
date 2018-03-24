@@ -1,6 +1,6 @@
 # RatoBoard
 
-[![CircleCI](https://circleci.com/gh/eboukamza/ratoboard/tree/master.svg?style=shield)](https://circleci.com/gh/eboukamza/ratoboard/tree/master)
+[![CircleCI](https://circleci.com/gh/eboukamza/ratoboard-desktop/tree/master.svg?style=shield)](https://circleci.com/gh/eboukamza/ratoboard/tree/master)
 
  Ratoboard is a virtual keyboard controlled only by mouse click.
  It's designed for allow people physically handicapped to write faster than with a conventional on-screen keyboard

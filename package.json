@@ -1,5 +1,5 @@
 {
-  "name": "ratoboard",
+  "name": "ratoboard-desktop",
   "version": "1.0.0-beta",
   "author": "Elias Zain <ezain2t@gmail.com>",
   "private": true,
@@ -13,29 +13,18 @@
     "electron": "electron .",
     "test": "karma start ./test-config/karma.conf.js",
     "test-coverage": "npm run test -- --single-run --coverage",
-    "release": "ionic-app-scripts build --prod && build",
     "gh-pages": "ngh --dir www --message=\"new release\"",
-    "build-linux": "electron-packager . build-with-native-modules --overwrite --platform=linux --arch=x64 --icon=assets/logo.png --prune=true --out=dist",
-    "build-win": "electron-packager . --asar --prune --overwrite --platform=win32 --arch=x64 --out=dist",
-    "dist": "build"
-  },
-  "build": {
-    "appId": "ezain.ratotron",
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb"
-      ]
-    },
-    "win": {
-    }
+    "package-linux": "electron-packager . --prune --overwrite --platform=linux --arch=x64 --icon=assets/incon.png  --out=dist",
+    "package-win": "electron-packager . --asar --prune --overwrite --platform=win32 --icon=assets/icon/favicon.ico --arch=ia32 --out=dist",
+    "dist": "build",
+    "release": "ionic-app-scripts build --prod && build --config config/build-electron-release.json"
   },
   "config": {
     "ionic_copy": "./config/custom.copy.js"
   },
   "repository": {
       "type": "git",
-      "url": "git+https://github.com/eboukamza/ratoboard.git"
+      "url": "git+https://github.com/eboukamza/ratoboard-desktop.git"
     },
   "dependencies": {
     "@angular/common": "5.0.0",
@@ -66,8 +55,7 @@
     "codelyzer": "~4.0.1",
     "electron": "~1.8.4",
     "electron-packager": "^11.1.0",
-    "electron-rebuild": "~1.7.3",
-    "electron-builder": "latest",
+    "electron-builder": "~20.5.1",
     "html-loader": "^0.4.5",
     "istanbul-instrumenter-loader": "^2.0.0",
     "jasmine": "^2.5.3",
@@ -89,11 +77,12 @@
       "electron-57"
     ],
     "platforms": [
+      "linux",
       "win32"
     ],
     "arches": [
       "x64"
     ]
   },
-  "description": "ratoboard project"
+  "description": "ratoboard destktop"
 }
