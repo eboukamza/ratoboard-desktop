@@ -1,6 +1,6 @@
 {
   "name": "ratoboard-desktop",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "author": "Elias Zain <ezain2t@gmail.com>",
   "private": true,
   "main": "www/electron.js",

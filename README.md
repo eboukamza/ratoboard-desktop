@@ -14,6 +14,8 @@
  
  Ratoboard is multiplatform (linux, windows and mac)
  
+ [url=https://www.imageupload.co.uk/image/E6JT][img]https://www.imageupload.co.uk/images/2018/03/25/ratoboard.png[/img][/url]
+ 
  you can try the concept of the keyboard in this [demo](https://eboukamza.github.io/ratoboard/) of this other repo [https://github.com/eboukamza/ratoboard](https://github.com/eboukamza/ratoboard)
 
 How to Build
