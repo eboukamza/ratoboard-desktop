@@ -16,8 +16,8 @@
     "gh-pages": "ngh --dir www --message=\"new release\"",
     "package-linux": "electron-packager . --prune --overwrite --platform=linux --arch=x64 --icon=assets/incon.png  --out=dist",
     "package-win": "electron-packager . --asar --prune --overwrite --platform=win32 --icon=assets/icon/favicon.ico --arch=ia32 --out=dist",
-    "dist": "build",
-    "release": "ionic-app-scripts build --prod && build --config config/build-electron-release.json"
+    "dist": "build --config config/build-electron-release.json",
+    "release": "ionic-app-scripts build --prod && yarn dist"
   },
   "config": {
     "ionic_copy": "./config/custom.copy.js"
