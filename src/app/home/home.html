@@ -1,7 +1,7 @@
 <ion-content padding>
   <ion-item>
     <ion-toggle [(ngModel)]="ratoControlActive"></ion-toggle>
-    <ion-range min="5" max="100" step="1" [(ngModel)]="mouseSpeed" (ngModelChange)="saveMouseSpeed(mouseSpeed)">
+    <ion-range min="5" max="50" step="1" [(ngModel)]="mouseSpeed" (ngModelChange)="saveMouseSpeed(mouseSpeed)">
     </ion-range>
   </ion-item>
   <ratocontrol (newMove)="handleMove($event)" [disabled]="isRatoControlActive()" [select]="mouseSelectEmitter" [duration]="duration"></ratocontrol>
