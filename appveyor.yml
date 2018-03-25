@@ -1,5 +1,3 @@
-version: v1.0.0-beta.{build}
-
 platform:
   - x64
 
