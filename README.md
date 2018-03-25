@@ -1,23 +1,25 @@
 # RatoBoard
 
-[![CircleCI](https://circleci.com/gh/eboukamza/ratoboard-desktop/tree/master.svg?style=shield)](https://circleci.com/gh/eboukamza/ratoboard/tree/master)
+[![CircleCI](https://circleci.com/gh/eboukamza/ratoboard-desktop/tree/master.svg?style=shield)](https://circleci.com/gh/eboukamza/ratoboard-desktop/tree/master)
+[![Appveyor](https://ci.appveyor.com/api/projects/status/github/eboukamza/ratoboard-desktop/?branch=master&svg=true)](https://ci.appveyor.com/project/eboukamza/ratoboard-desktop)
 
- Ratoboard is a virtual keyboard controlled only by mouse click.
- It's designed for allow people physically handicapped to write faster than with a conventional on-screen keyboard
+ Ratoboard is a minimalist universal access util that provides a virtual mouse and keyboard controlled only by mouse click.
+ It's specifically designed for allow people physically handicapped to be more productive than with a conventional on-screen keyboard.
+ The mouse can be connected to an special press button for be easier to press.
+ 
+ You can use it for chat, play and surf in the internet.
 
- The project is developed using Angular and Ionic frameworks.
- Ratoboard is a server-less web app and is installable in chrome for PC, mobile and tablet.
+ Ratoboard is an electron app developed using Angular and Ionic frameworks.
+ For the mouse control uses robotjs and ihook for capture mouse events.
+ 
+ Ratoboard is multiplatform (linux, windows and mac)
+ 
+ you can try the concept of the keyboard in this [demo](https://eboukamza.github.io/ratoboard/) of this other repo [https://github.com/eboukamza/ratoboard](https://github.com/eboukamza/ratoboard)
 
- This repo is also a show case of some new technologies or practices (listed below).
+How to Build
+-----------
+prerequisites 
 
-Uses
--------
+ nodejs > 8.2.1
 
-- [x] SpeechSynthesis API
-- [x] RxJs
-- [x] LocalStorage
-- [x] Service Worker
-- [x] Installable Web App in Chrome for Android
-- [x] Unit test in Angular (with TestBed)
-- [x] Continuous integration with circleCI
-- [ ] Component-based architecture (?)
+run `yarn && yarn build -- --prod && yarn dist`
