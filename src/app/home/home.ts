@@ -100,7 +100,7 @@ export class HomePage implements AfterViewInit {
   handleMove(move) {
     switch (move) {
       case 'enter':
-        this.doEnter();
+        this.doClick();
         return;
       case 'keyboard':
         this.doKeyBoard();
@@ -108,6 +108,11 @@ export class HomePage implements AfterViewInit {
       default:
         this.doMouseMove(move);
     }
+  }
+
+  doClick() {
+    this.robotService.doClick();
+    this.mouseSelectEmitter.next();
   }
 
   doEnter() {

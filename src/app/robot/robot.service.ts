@@ -22,16 +22,18 @@ export class RobotService {
   typeString = (txt) => this.robot.typeString(txt);
 
   doEnter = () => {
+    this.robot.keyTap('enter');
+  }
+
+  doClick = () => {
     ioHook.enable(false);
     setTimeout(() => {
       this.robot.mouseClick();
-      //this.robot.keyTap('enter');
       setTimeout(() => {
         ioHook.enable(true);
       }, 100);
     }, 100);
 
   }
-
 
 }
