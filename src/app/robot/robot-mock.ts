@@ -16,4 +16,5 @@ export class RobotMock implements Robot {
   getMousePos = () => (this.mousePos);
   typeString = (txt) => console.debug('mock typeString', txt);
   keyTap = (key) => console.debug('mock keyTap', key);
+  mouseClick = () => console.debug('mock click');
 }

@@ -5,7 +5,7 @@ const up = (mousePos) => ({x: mousePos.x, y: mousePos.y - 1});
 const down = (mousePos) => ({x: mousePos.x, y: mousePos.y + 1});
 const left = (mousePos) => ({x: mousePos.x - 1, y: mousePos.y});
 const right = (mousePos) => ({x: mousePos.x + 1, y: mousePos.y});
-
+declare const ioHook;
 @Injectable()
 export class RobotService {
 
@@ -21,7 +21,17 @@ export class RobotService {
 
   typeString = (txt) => this.robot.typeString(txt);
 
-  doEnter = () => this.robot.keyTap('enter');
+  doEnter = () => {
+    ioHook.enable(false);
+    setTimeout(() => {
+      this.robot.mouseClick();
+      //this.robot.keyTap('enter');
+      setTimeout(() => {
+        ioHook.enable(true);
+      }, 100);
+    }, 100);
+
+  }
 
 
 }

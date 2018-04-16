@@ -16,7 +16,7 @@
 
     let virtualClickEvent = new Event('virtual-click');
 
-    const ioHook = require('iohook');
+    ioHook = require('iohook');
 
     ioHook.on("mouseup", event => {
       console.log(event);
@@ -24,7 +24,7 @@
     });
 
     //Register and start hook
-    ioHook.start();
+    ioHook.start(true);
 
   </script>
 
