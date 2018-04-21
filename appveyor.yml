@@ -14,11 +14,11 @@ install:
   - ps: Install-Product node 8 x64
   - git reset --hard HEAD
   - npm install -g npm
-  - npm install
-  - npm prune
+  - npm install -g yarn
+  - yarn
 
 build_script:
   - node --version
   - npm --version
-  - npm run release
+  - yarn release
 
