@@ -57,6 +57,20 @@ function createWindow () {
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
 
+const isSecondInstance = app.makeSingleInstance(() => {
+  // Someone tried to run a second instance, we should focus our window.
+  if (mainWindow) {
+    if (mainWindow.isMinimized()) {
+      mainWindow.restore();
+    }
+    mainWindow.focus();
+  }
+});
+
+if (isSecondInstance) {
+  app.quit()
+}
+
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
