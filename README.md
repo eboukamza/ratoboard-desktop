@@ -1,7 +1,8 @@
 # RatoBoard
 
 [![CircleCI](https://circleci.com/gh/eboukamza/ratoboard-desktop/tree/master.svg?style=shield)](https://circleci.com/gh/eboukamza/ratoboard-desktop/tree/master)
-[![Appveyor](https://ci.appveyor.com/api/projects/status/github/eboukamza/ratoboard-desktop/?branch=master&svg=true)](https://ci.appveyor.com/project/eboukamza/ratoboard-desktop)
+[![Appveyor](https://ci.appveyor.com/api/projects/status/12jp45s86xu26y5u/branch/master?svg=true)](https://ci.appveyor.com/project/eboukamza/ratoboard-desktop/branch/master)
+
 
  Ratoboard is a minimalist universal access util that provides a virtual mouse and keyboard controlled only by mouse click.
  It's specifically designed for allow people physically handicapped to be more productive than with a conventional on-screen keyboard.
