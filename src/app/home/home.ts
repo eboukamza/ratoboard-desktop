@@ -5,6 +5,9 @@ import {RobotService} from '../robot/robot.service';
 const DEFAULT_DURATION_MS = 1500;
 const DEFAULT_MOUSE_SPEED = 10;
 
+declare const ioHook;
+
+
 @Component({
   selector: 'home',
   templateUrl: 'home.html'
@@ -167,6 +170,10 @@ export class HomePage implements AfterViewInit {
 
   saveMouseSpeed(mouseSpeed) {
     this.storage.set('mouseSpeed', mouseSpeed);
+  }
+
+  setEnable(ratoControlActive) {
+    setTimeout(() => ioHook.enable(ratoControlActive), 100);
   }
 
 }
