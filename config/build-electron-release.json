@@ -12,7 +12,8 @@
     "category": "Universal Access",
     "icon": "www/assets/",
     "target": [
-      "deb"
+      "deb",
+      "AppImage"
     ]
   },
   "win": {
