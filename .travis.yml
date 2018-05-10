@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- '8'
+matrix:
+  include:
+  - os: osx
+
+cache:
+  yarn: true
+script:
+  - yarn install
+  - yarn run build --prod --no-progress
+  - yarn release
+notifications:
+  email: false

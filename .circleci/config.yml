@@ -4,7 +4,7 @@ jobs:
   build:
     working_directory: ~/rato-board
     docker:
-      - image: circleci/node:6-browsers
+      - image: circleci/node:8-browsers
     steps:
       - checkout
       - restore_cache:
