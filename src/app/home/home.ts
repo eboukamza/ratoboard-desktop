@@ -173,7 +173,8 @@ export class HomePage implements AfterViewInit {
   }
 
   setEnable(ratoControlActive) {
-    setTimeout(() => ioHook.enable(ratoControlActive), 100);
+    setTimeout(() => ratoControlActive ? ioHook.disableClickPropagation() : ioHook.enableClickPropagation(),
+        100);
   }
 
 }

@@ -26,11 +26,11 @@ export class RobotService {
   }
 
   doClick = () => {
-    ioHook.enable(false);
+    ioHook.enableClickPropagation();
     setTimeout(() => {
       this.robot.mouseClick();
       setTimeout(() => {
-        ioHook.enable(true);
+        ioHook.disableClickPropagation();
       }, 100);
     }, 100);
 
