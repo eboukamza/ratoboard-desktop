@@ -29,7 +29,7 @@ How use it
  You can try the concept of the keyboard in this [demo](https://eboukamza.github.io/ratoboard/) of this other repo [https://github.com/eboukamza/ratoboard](https://github.com/eboukamza/ratoboard)
  Remember, one single action for control it: left click.
 
- ![RatoBoard say hi](https://www.imageupload.co.uk/images/2018/05/12/ratoboard-say-hi.gif)
+ ![RatoBoard say hi](https://www.imageupload.co.uk/images/2018/05/14/ratoboard-say-hi.gif)
 
 What RatoBoard can do
 -----
