@@ -15,4 +15,24 @@ ratoboard {
     background: #d6d6d6;
     opacity: 0.5;
   }
+
+  @keyframes pound {
+    0% {
+      transform: none;
+    }
+    50% {
+      transform: scale(1.2);
+      background: #feebc9
+    }
+    100% {
+      transform: none;
+    }
+  }
+
+  .active.selected {
+    animation-name: pound;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    z-index: 1000;
+  }
 }

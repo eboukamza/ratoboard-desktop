@@ -33,12 +33,9 @@ describe('Ratoboard Component', () => {
 
     let de: DebugElement[] = fixture.debugElement.queryAll(By.css('.active'));
 
-    expect(de.length).toEqual(2);
+    expect(de.length).toEqual(1);
 
-    let active1 = de[0].nativeElement.textContent;
-    expect(active1).toBe('e');
-
-    let active2 = de[1].nativeElement.textContent;
+    let active2 = de[0].nativeElement.textContent;
     expect(active2).toBe(comp.ABC[comp.currentIndex2][comp.currentIndex])
   });
 
