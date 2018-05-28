@@ -75,13 +75,12 @@ export class HomePage implements AfterViewInit {
         break;
       // SEND
       case '&#xf376;':
-        this.robotService.typeString(this.text);
-        this.robotService.doEnter();
-        // clear buffer
-        this.text = '';
+        this.doSend();
         break;
       case '&#xf2e6':
-        // select ratocontrol;
+        // send before switch
+        this.doSend();
+        // select ratocontrol
         this.activeBoard = 'ratocontrol';
         // notify ratocontrol
         this.mouseSelectEmitter.next();
@@ -111,10 +110,11 @@ export class HomePage implements AfterViewInit {
     this.mouseSelectEmitter.next();
   }
 
-  doEnter() {
-    this.robotService.doEnter();
+  doSend() {
     this.robotService.typeString(this.text);
-    this.mouseSelectEmitter.next();
+    this.robotService.doEnter();
+    // clear buffer
+    this.text = '';
   }
 
   doKeyBoard() {
