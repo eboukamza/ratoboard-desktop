@@ -17,7 +17,6 @@ export class HomePage implements AfterViewInit {
   duration = DEFAULT_DURATION_MS;
   activeBoard: string;
 
-  @ViewChild('textInput') textInput;
   text = '';
   keySelectEmitter = new EventEmitter<void>();
 
@@ -32,10 +31,6 @@ export class HomePage implements AfterViewInit {
     } else {
       this.keySelectEmitter.next();
     }
-  }
-
-  setFocus() {
-    this.textInput.setFocus();
   }
 
   constructor(private storage: Storage, private robotService: RobotService) {
@@ -96,8 +91,6 @@ export class HomePage implements AfterViewInit {
         this.text += char;
     }
 
-    this.setFocus();
-
   }
 
   handleMove(move) {
@@ -125,7 +118,6 @@ export class HomePage implements AfterViewInit {
   }
 
   doKeyBoard() {
-    this.setFocus();
     this.activeBoard = 'ratoboard';
   }
 

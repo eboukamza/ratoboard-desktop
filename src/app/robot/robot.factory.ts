@@ -1,5 +1,4 @@
 import {RobotMock} from './robot-mock';
-declare const robot: any;
 
 export function robotFactory() {
   try {
