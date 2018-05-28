@@ -20,7 +20,10 @@
 
     ioHook.on("mouseup", event => {
       console.log(event);
-      document.dispatchEvent(virtualClickEvent);
+      let home = document.getElementsByTagName('home')[0];
+      if (home) {
+        home.dispatchEvent(virtualClickEvent);
+      }
     });
 
     //Register and start hook

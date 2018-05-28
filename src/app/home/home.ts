@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, HostListener, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, HostListener} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {MouseService} from '../mouse/mouse.service';
 
@@ -23,6 +23,7 @@ export class HomePage implements AfterViewInit {
   mouseSelectEmitter = new EventEmitter<void>();
 
 
+  @HostListener('virtual-click')
   selectKey() {
     if (this.activeBoard === 'ratocontrol') {
       this.mouseSelectEmitter.next();
@@ -35,12 +36,6 @@ export class HomePage implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-
-    // should be global for allow the control outside the window
-    document.addEventListener('virtual-click', () => {
-      this.selectKey();
-    });
-
     this.activeBoard = 'ratocontrol';
 
     this.loadConfig();
