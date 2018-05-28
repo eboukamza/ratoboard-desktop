@@ -63,10 +63,10 @@ export class RatoBoard implements OnInit {
     this.keypressed = true;
   }
 
-  startNewCycle() {
+  startNewCycle(fast = false) {
     this.keypressed = false;
     this.first = true;
-    this.currentIndex = -1;
+    this.currentIndex = fast ? 0 : -1 ;
     this.currentIndex2 = -1;
   }
 
@@ -85,7 +85,7 @@ export class RatoBoard implements OnInit {
     let maxIndex = this.first ? this.ABC[0].length : this.ABC.length;
 
     if (selectIndex >= maxIndex) {
-      this.startNewCycle();
+      this.startNewCycle(this.first);
     }
   }
 
