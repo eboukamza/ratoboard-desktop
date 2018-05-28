@@ -1,15 +1,16 @@
 import {Injectable} from '@angular/core';
 import {Robot} from './robot';
+import {IoHook} from './io-hook';
 
 const up = (mousePos) => ({x: mousePos.x, y: mousePos.y - 1});
 const down = (mousePos) => ({x: mousePos.x, y: mousePos.y + 1});
 const left = (mousePos) => ({x: mousePos.x - 1, y: mousePos.y});
 const right = (mousePos) => ({x: mousePos.x + 1, y: mousePos.y});
-declare const ioHook;
-@Injectable()
-export class RobotService {
 
-  constructor(private robot: Robot) {
+@Injectable()
+export class MouseService {
+
+  constructor(private robot: Robot, private ioHook: IoHook) {
   }
 
   move = (newMousePos) => this.robot.moveMouse(newMousePos.x, newMousePos.y);
@@ -21,19 +22,23 @@ export class RobotService {
 
   typeString = (txt) => this.robot.typeString(txt);
 
-  doEnter = () => {
-    this.robot.keyTap('enter');
-  }
+  doEnter = () => this.robot.keyTap('enter');
 
-  doClick = () => {
-    ioHook.enableClickPropagation();
+  doClick() {
+    this.ioHook.enableClickPropagation();
     setTimeout(() => {
       this.robot.mouseClick();
       setTimeout(() => {
-        ioHook.disableClickPropagation();
+        this.ioHook.disableClickPropagation();
       }, 100);
     }, 100);
-
   }
 
+  disableClickPropagation() {
+    this.ioHook.disableClickPropagation();
+  }
+
+  enableClickPropagation() {
+    this.ioHook.enableClickPropagation();
+  }
 }

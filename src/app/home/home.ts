@@ -1,11 +1,9 @@
 import {AfterViewInit, Component, EventEmitter, HostListener, ViewChild} from '@angular/core';
 import {Storage} from '@ionic/storage';
-import {RobotService} from '../robot/robot.service';
+import {MouseService} from '../mouse/mouse.service';
 
 const DEFAULT_DURATION_MS = 1500;
 const DEFAULT_MOUSE_SPEED = 10;
-
-declare const ioHook;
 
 
 @Component({
@@ -33,7 +31,7 @@ export class HomePage implements AfterViewInit {
     }
   }
 
-  constructor(private storage: Storage, private robotService: RobotService) {
+  constructor(private storage: Storage, private mouseService: MouseService) {
   }
 
   ngAfterViewInit() {
@@ -106,13 +104,13 @@ export class HomePage implements AfterViewInit {
   }
 
   doClick() {
-    this.robotService.doClick();
+    this.mouseService.doClick();
     this.mouseSelectEmitter.next();
   }
 
   doSend() {
-    this.robotService.typeString(this.text);
-    this.robotService.doEnter();
+    this.mouseService.typeString(this.text);
+    this.mouseService.doEnter();
     // clear buffer
     this.text = '';
   }
@@ -129,16 +127,16 @@ export class HomePage implements AfterViewInit {
     let action;
     switch (move) {
       case 'up':
-        action = this.robotService.doMoveUp;
+        action = this.mouseService.doMoveUp;
         break;
       case 'down':
-        action = this.robotService.doMoveDown;
+        action = this.mouseService.doMoveDown;
         break;
       case 'left':
-        action = this.robotService.doMoveLeft;
+        action = this.mouseService.doMoveLeft;
         break;
       case 'right':
-        action = this.robotService.doMoveRight;
+        action = this.mouseService.doMoveRight;
         break;
     }
 
@@ -165,7 +163,7 @@ export class HomePage implements AfterViewInit {
   }
 
   setEnable(ratoControlActive) {
-    setTimeout(() => ratoControlActive ? ioHook.disableClickPropagation() : ioHook.enableClickPropagation(),
+    setTimeout(() => ratoControlActive ? this.mouseService.disableClickPropagation() : this.mouseService.enableClickPropagation(),
         100);
   }
 

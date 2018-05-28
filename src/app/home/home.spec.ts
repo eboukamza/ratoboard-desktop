@@ -9,9 +9,11 @@ import {HomePage} from './home';
 import {RatoBoard} from './ratoboard/ratoboard.component';
 import {RatoKeyDirective} from './ratoboard/ratokey.directive';
 import {RatoControl} from './ratocontrol/ratocontrol.component';
-import {Robot} from '../robot/robot';
-import {RobotMock} from '../robot/robot-mock';
-import {RobotService} from '../robot/robot.service';
+import {Robot} from '../mouse/robot';
+import {RobotMock} from '../mouse/robot-mock';
+import {MouseService} from '../mouse/mouse.service';
+import {IoHook} from '../mouse/io-hook';
+import {IoHookMock} from '../mouse/io-hook-mock';
 
 describe('HomePage', () => {
   let de: DebugElement;
@@ -26,8 +28,9 @@ describe('HomePage', () => {
         IonicModule.forRoot(HomePage)
       ],
       providers: [
+        {provide: IoHook, useClass: IoHookMock},
         {provide: Robot, useClass: RobotMock},
-        RobotService
+        MouseService
       ]
     });
 

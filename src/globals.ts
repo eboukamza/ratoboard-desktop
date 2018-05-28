@@ -1,2 +1,2 @@
-declare let iohook;
+declare let ioHook;
 declare let robot;
