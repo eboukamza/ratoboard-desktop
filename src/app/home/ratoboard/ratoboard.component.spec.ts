@@ -49,7 +49,7 @@ describe('Ratoboard Component', () => {
     let expectedChar = comp.ABC[2][1];
     spyOn(comp.newChar, 'emit').and.callThrough();
 
-    comp.selectKey();
+    comp.handleSelect();
 
     expect(comp.newChar.emit).toHaveBeenCalledWith(expectedChar);
   });
@@ -63,7 +63,7 @@ describe('Ratoboard Component', () => {
       let expectedChar = comp.ABC[0][1];
       spyOn(comp.newChar, 'emit').and.callThrough();
 
-      comp.selectKey();
+      comp.handleSelect();
 
       expect(comp.newChar.emit).toHaveBeenCalledWith(expectedChar);
     });
@@ -71,10 +71,10 @@ describe('Ratoboard Component', () => {
   it('should not emit when the index are not valid', () => {
        fixture.detectChanges();
        spyOn(comp.newChar, 'emit').and.callThrough();
-       comp.startNewCycle();
+       comp.reset();
 
-       comp.selectKey();
-       comp.selectKey();
+       comp.handleSelect();
+       comp.handleSelect();
 
        expect(comp.first).toBeTruthy();
        expect(comp.newChar.emit).toHaveBeenCalledTimes(0);

@@ -12,14 +12,18 @@ const DEFAULT_MOUSE_SPEED = 10;
 })
 export class HomePage implements AfterViewInit {
 
+  constructor(private storage: Storage, private mouseService: MouseService) {
+  }
+
   duration = DEFAULT_DURATION_MS;
+
   activeBoard: string;
-
   text = '';
-  keySelectEmitter = new EventEmitter<void>();
 
+  keySelectEmitter = new EventEmitter<void>();
   mouseSpeed = DEFAULT_MOUSE_SPEED;
   ratoControlActive = true;
+
   mouseSelectEmitter = new EventEmitter<void>();
 
 
@@ -30,9 +34,6 @@ export class HomePage implements AfterViewInit {
     } else {
       this.keySelectEmitter.next();
     }
-  }
-
-  constructor(private storage: Storage, private mouseService: MouseService) {
   }
 
   ngAfterViewInit() {

@@ -5,7 +5,7 @@
     <ion-col *ngFor="let key of line; index as index"
              [ngClass]="{'row-selected': currentIndex === index || currentIndex2 === rowIndex,
                          'active': currentIndex === index && (currentIndex2 === rowIndex || rowIndex == 0 && currentIndex2 === -1),
-                         'selected': keypressed}"
+                         'selected': keySelected}"
              [ratoKey]="key">
     </ion-col>
 

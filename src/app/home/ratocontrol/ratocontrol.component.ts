@@ -14,24 +14,28 @@ export class RatoControl implements OnInit {
   disabled = false;
 
   currentIndex;
-  keySelected;
+  keySelected = false;
 
   controls = ['enter', 'up', 'down', 'left', 'right', 'keyboard'];
-
-  @Input()
-  set select(selectEvent: Observable<void>) {
-
-    selectEvent.subscribe(() => {
-      this.handleSelect();
-    });
-  }
 
   @Output()
   newMove: EventEmitter<string> = new EventEmitter<string>();
 
-  reset() {
-    this.currentIndex = -1;
-    this.keySelected = false;
+  @Input()
+  set select(selectEvent: Observable<void>) {
+    selectEvent.subscribe(() => this.handleSelect());
+  }
+
+  handleSelect() {
+    if (this.currentIndex === -1) {
+      return;
+    }
+    this.keySelected = !this.keySelected;
+    if (this.keySelected) {
+      this.newMove.emit(this.controls[this.currentIndex.toString()]);
+    } else {
+      this.reset();
+    }
   }
 
   ngOnInit() {
@@ -40,26 +44,23 @@ export class RatoControl implements OnInit {
     this.clockTick();
   }
 
+  reset() {
+    this.currentIndex = -1;
+    this.keySelected = false;
+  }
+
   clockTick() {
     this.updateIndex();
     setTimeout(() => this.clockTick(), this.duration);
   }
 
-  private updateIndex() {
-    if (!this.keySelected && !this.disabled) {
-      this.currentIndex = ++this.currentIndex % this.controls.length;
+  updateIndex() {
+    const sleeping = this.disabled || this.keySelected;
+    if (sleeping) {
+      return;
     }
-  }
 
-  handleSelect() {
-    if (this.currentIndex === -1) { return; }
-    this.keySelected = !this.keySelected;
-    if (!this.keySelected) {
-      this.reset();
-    } else {
-      // TODO think about if must be once or each clockTick??
-      this.newMove.emit(this.controls[this.currentIndex.toString()]);
-    }
+    this.currentIndex = ++this.currentIndex % this.controls.length;
   }
 
 }

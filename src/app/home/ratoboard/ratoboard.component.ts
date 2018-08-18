@@ -17,36 +17,26 @@ export class RatoBoard implements OnInit {
   ];
 
   @Input()
+  duration = 1500;
+
+  @Input()
   disabled = false;
 
   currentIndex;
   currentIndex2;
   first;
 
-  keypressed = false;
-
-  @Input()
-  duration = 1500;
+  keySelected = false;
 
   @Output()
   newChar: EventEmitter<string> = new EventEmitter<string>();
 
   @Input()
   set select(selectEvent: Observable<void>) {
-
-    selectEvent.subscribe(() => {
-      this.selectKey();
-    });
+    selectEvent.subscribe(() => this.handleSelect());
   }
 
-  ngOnInit() {
-    // init rato
-    this.startNewCycle();
-    // init clock
-    this.clockTick();
-  }
-
-  selectKey() {
+  handleSelect() {
     if (this.currentIndex === -1) { return; }
 
     if (this.first) {
@@ -60,11 +50,17 @@ export class RatoBoard implements OnInit {
     let newChar = this.ABC[index2][index1];
     this.newChar.emit(newChar);
 
-    this.keypressed = true;
+    this.keySelected = true;
   }
 
-  startNewCycle(fast = false) {
-    this.keypressed = false;
+  ngOnInit() {
+    this.reset();
+    // init clock
+    this.clockTick();
+  }
+
+  reset(fast = false) {
+    this.keySelected = false;
     this.first = true;
     this.currentIndex = fast ? 0 : -1 ;
     this.currentIndex2 = -1;
@@ -76,8 +72,9 @@ export class RatoBoard implements OnInit {
   }
 
   private updateIndex() {
-    if (this.sleep()) {
-      this.startNewCycle();
+    const sleeping = this.disabled || this.keySelected;
+    if (sleeping) {
+      this.reset();
       return;
     }
 
@@ -85,12 +82,8 @@ export class RatoBoard implements OnInit {
     let maxIndex = this.first ? this.ABC[0].length : this.ABC.length;
 
     if (selectIndex >= maxIndex) {
-      this.startNewCycle(this.first);
+      this.reset(this.first);
     }
-  }
-
-  sleep() {
-    return this.disabled || this.keypressed;
   }
 
 }
