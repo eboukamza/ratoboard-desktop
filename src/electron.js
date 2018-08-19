@@ -26,6 +26,8 @@ function createWindow () {
     icon: path.join(__dirname, 'assets/icon.png')
   });
 
+  mainWindow.setAlwaysOnTop(true); // work around issue https://github.com/electron/electron/issues/12445
+
   mainWindow.setMenu(null);
 
   // and load the index.html of the app.
