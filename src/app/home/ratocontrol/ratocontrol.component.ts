@@ -16,7 +16,7 @@ export class RatoControl implements OnInit {
   currentIndex;
   keySelected = false;
 
-  controls = ['enter', 'up', 'down', 'left', 'right', 'keyboard'];
+  controls = ['left-click', 'up', 'down', 'left', 'right', 'right-click', 'keyboard'];
 
   @Output()
   newMove: EventEmitter<string> = new EventEmitter<string>();

@@ -24,7 +24,7 @@ export class MouseService {
 
   doEnter = () => this.robot.keyTap('enter');
 
-  doClick() {
+  doLeftClick() {
     this.ioHook.enableClickPropagation();
     setTimeout(() => {
       this.robot.mouseClick();
@@ -32,6 +32,16 @@ export class MouseService {
         this.ioHook.disableClickPropagation();
       }, 100);
     }, 100);
+  }
+
+  doRightClick() {
+    this.ioHook.enableClickPropagation();
+    setTimeout(() => {
+          this.robot.mouseClick('right');
+          setTimeout(() => {
+            this.ioHook.disableClickPropagation();
+          }, 100);
+        }, 100);
   }
 
   disableClickPropagation() {

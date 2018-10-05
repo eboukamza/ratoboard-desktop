@@ -88,8 +88,11 @@ export class HomePage implements AfterViewInit {
 
   handleMove(move) {
     switch (move) {
-      case 'enter':
-        this.doClick();
+      case 'left-click':
+        this.doLeftClick();
+        return;
+      case 'right-click':
+        this.doRightClick();
         return;
       case 'keyboard':
         this.doKeyBoard();
@@ -99,8 +102,13 @@ export class HomePage implements AfterViewInit {
     }
   }
 
-  doClick() {
-    this.mouseService.doClick();
+  doLeftClick() {
+    this.mouseService.doLeftClick();
+    this.mouseSelectEmitter.next();
+  }
+
+  doRightClick() {
+    this.mouseService.doRightClick();
     this.mouseSelectEmitter.next();
   }
 

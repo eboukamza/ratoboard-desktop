@@ -4,5 +4,6 @@ export abstract class Robot {
   abstract getMousePos();
   abstract typeString (txt);
   abstract keyTap (key);
-  abstract mouseClick();
+  abstract mouseClick(button?: 'left'| 'right', double?: boolean);
+
 }

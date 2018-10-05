@@ -20,6 +20,9 @@
 
     ioHook.on("mouseup", event => {
       console.log(event);
+      // only left click dispatch event
+      if (event.button !== 1) return;
+
       let home = document.getElementsByTagName('home')[0];
       if (home) {
         home.dispatchEvent(virtualClickEvent);
