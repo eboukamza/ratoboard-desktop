@@ -53,7 +53,9 @@ How to Build
 -----------
 prerequisites 
 
- - nodejs >= 8
+ - nodejs 8
  - yarn
+ - g++
+ - see readme of robotjs for other deps
 
 run `yarn && yarn build -- --prod && yarn dist`
