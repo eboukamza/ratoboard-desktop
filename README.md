@@ -23,13 +23,13 @@ How use it
  RatoBoard is designed to be used with a Switch Adapted Mouse. You can buy one or do it yourself.
  Anyway if you have press button that produces a left click you can control Ratoboard with it.
 
- ![Switch Adapted Mouse](https://www.imageupload.co.uk/images/2018/05/11/switch-adapted-mouse2.jpg)
+ ![Switch Adapted Mouse](https://ratoboard.s3-eu-west-1.amazonaws.com/switch-adapted-mouse.jpg)
 
 
  You can try the concept of the keyboard in this [demo](https://eboukamza.github.io/ratoboard/) of this other repo [https://github.com/eboukamza/ratoboard](https://github.com/eboukamza/ratoboard)
  Remember, one single action for control it: left click.
 
- ![RatoBoard say hi](https://www.imageupload.co.uk/images/2018/05/14/ratoboard-say-hi.gif)
+ ![RatoBoard say hi](https://ratoboard.s3-eu-west-1.amazonaws.com/ratoboard-say-hi.gif)
 
 What RatoBoard can do
 -----
