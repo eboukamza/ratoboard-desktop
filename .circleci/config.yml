@@ -22,7 +22,7 @@ jobs:
           command: yarn run build --prod --no-progress
       - run:
           name: test
-          command: yarn test -- --single-run --coverage --no-progress
+          command: yarn test --ci
       - run:
           name: lint
           command: yarn lint
