@@ -5,10 +5,8 @@ matrix:
   include:
   - os: osx
 
-cache:
-  yarn: true
 script:
-  - yarn install
+  - yarn install --force
   - yarn run build --prod --no-progress
   - yarn release
 notifications:
