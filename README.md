@@ -33,7 +33,7 @@ How use it
 
 What RatoBoard can do
 -----
-- Handle the mouse (move and left click)
+- Handle the mouse (move, left and right click)
 - Write an text input with auto send (useful for chat)
 - Config mouse move speed
 - Config auto-scan speed
@@ -41,7 +41,7 @@ What RatoBoard can do
 
 What next (road map)
 --
-- Full mouse control (right click, drag & drop)
+- Full mouse control (drag & drop)
 - Select keyboard layout (es, fr, en)
 - Full keyboard (special chars, emojis)
 - Simplified and faster mouse move
